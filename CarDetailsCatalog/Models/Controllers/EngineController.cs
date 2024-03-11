@@ -1,32 +1,33 @@
 ﻿using System.Collections.Generic;
 using CarDetailsCatalog.Models.Controllers.Repositories;
+using CarDetailsCatalog.Models.Details;
 
 namespace CarDetailsCatalog.Models.Controllers
 {
-    public class DetailController
+    public class EngineController
     {
-        private static DetailController _instance;
-        private readonly DetailRepository _repository;
+        private static EngineController _instance;
+        private readonly EngineRepository _repository;
 
-        public DetailController(DetailRepository repository)
+        public EngineController(EngineRepository repository)
         {
             _repository = repository;
         }
 
-        public static DetailController Instance
+        public static EngineController Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    _instance = new DetailController(new DetailRepository(new AppDbContext()));
+                    _instance = new EngineController(new EngineRepository(new AppDbContext()));
                 }
 
                 return _instance;
             }
         }
 
-        public static List<Detail> GetAll()
+        public static List<Engine> GetAll()
         {
             return Instance._repository.GetAll();
         }

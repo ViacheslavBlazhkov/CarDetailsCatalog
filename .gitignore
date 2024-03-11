@@ -1,0 +1,6 @@
+/packages
+CarDetailsCatalog.sln.DotSettings.user
+.idea
+/CarDetailsCatalog/obj
+/CarDetailsCatalog/bin
+/identifier.sqlite

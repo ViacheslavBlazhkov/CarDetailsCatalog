@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using System.ComponentModel.DataAnnotations;
 using CarDetailsCatalog.Constants;
 
 namespace CarDetailsCatalog.Models
 {
     public class Car
     {
-        public int Id { get; }
+        [Key] public int Id { get; set; }
         public int BrandId { get; set; }
         public string Model { get; set; }
         public int Year { get; set; }
         public int CountryId { get; set; }
-        
+
         public static string GetBrandTitleFor(Brand id)
         {
             var titles = new Dictionary<Brand, string>()
@@ -23,7 +23,7 @@ namespace CarDetailsCatalog.Models
             };
             return titles[id];
         }
-        
+
         public static string GetCountryTitleFor(Country id)
         {
             var titles = new Dictionary<Country, string>()

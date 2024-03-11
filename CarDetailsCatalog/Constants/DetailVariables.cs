@@ -7,12 +7,4 @@
         ToyoTires,
         Volkswagen
     }
-    
-    public enum DetailType
-    {
-        Brakes,
-        Engine,
-        Gearbox,
-        Tires
-    }
 }

@@ -7,6 +7,10 @@ namespace CarDetailsCatalog
         public Form1()
         {
             InitializeComponent();
+            using (var context = new AppDbContext())
+            {
+                context.Database.CreateIfNotExists();
+            }
         }
     }
 }

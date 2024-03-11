@@ -7,7 +7,7 @@
         Porsche,
         Subaru
     }
-    
+
     public enum Country
     {
         France,
