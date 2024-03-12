@@ -1,6 +1,6 @@
 ﻿namespace CarDetailsCatalog
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,17 +29,30 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.contentControl = new System.Windows.Forms.Control();
             this.SuspendLayout();
             // 
-            // Form1
+            // contentControl
+            // 
+            this.contentControl.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.contentControl.Location = new System.Drawing.Point(12, 74);
+            this.contentControl.Name = "contentControl";
+            this.contentControl.Size = new System.Drawing.Size(776, 364);
+            this.contentControl.TabIndex = 0;
+            this.contentControl.Text = "control1";
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Controls.Add(this.contentControl);
+            this.Name = "MainForm";
+            this.Text = "MainForm";
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.Control contentControl;
 
         #endregion
     }

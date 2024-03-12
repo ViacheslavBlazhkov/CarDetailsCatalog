@@ -12,7 +12,7 @@ namespace CarDetailsCatalog.Models
         public int Year { get; set; }
         public int CountryId { get; set; }
 
-        public static string GetBrandTitleFor(Brand id)
+        public static string GetBrandTitleFor(Brand brand)
         {
             var titles = new Dictionary<Brand, string>()
             {
@@ -21,10 +21,10 @@ namespace CarDetailsCatalog.Models
                 { Brand.Porsche, "Porsche" },
                 { Brand.Subaru, "Subaru" },
             };
-            return titles[id];
+            return titles[brand];
         }
 
-        public static string GetCountryTitleFor(Country id)
+        public static string GetCountryTitleFor(Country country)
         {
             var titles = new Dictionary<Country, string>()
             {
@@ -33,7 +33,7 @@ namespace CarDetailsCatalog.Models
                 { Country.Japan, "Japan" },
                 { Country.Usa, "Usa" },
             };
-            return titles[id];
+            return titles[country];
         }
     }
 }

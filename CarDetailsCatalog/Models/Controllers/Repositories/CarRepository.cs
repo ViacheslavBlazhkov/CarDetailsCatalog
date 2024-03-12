@@ -19,5 +19,10 @@ namespace CarDetailsCatalog.Models.Controllers.Repositories
         {
             return _dbSet.ToList();
         }
+
+        public List<Car> GetModelsByBrandId(int brandId)
+        {
+            return _dbSet.Where(car => car.BrandId == brandId).ToList();
+        }
     }
 }

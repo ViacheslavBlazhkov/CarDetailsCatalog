@@ -30,5 +30,10 @@ namespace CarDetailsCatalog.Models.Controllers
         {
             return Instance._repository.GetAll();
         }
+
+        public static List<Car> GetModelsByBrandId(int brandId)
+        {
+            return Instance._repository.GetModelsByBrandId(brandId);
+        }
     }
 }
