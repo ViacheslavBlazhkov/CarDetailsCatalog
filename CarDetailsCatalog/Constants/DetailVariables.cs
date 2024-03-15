@@ -5,6 +5,14 @@
         Audi,
         Bmw,
         ToyoTires,
-        Volkswagen
+        Volkswagen,
+    }
+
+    public enum DetailType
+    {
+        Brakes,
+        Engine,
+        Gearbox,
+        Tires,
     }
 }

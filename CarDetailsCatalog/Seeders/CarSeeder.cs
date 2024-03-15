@@ -12,7 +12,7 @@ namespace CarDetailsCatalog.Seeders
             _context = context;
         }
 
-        public void Seed()
+        public void Seed() // TODO: separate every brand
         {
             var cars = new[]
             {

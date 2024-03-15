@@ -30,6 +30,7 @@
         private void InitializeComponent()
         {
             this.contentControl = new System.Windows.Forms.Control();
+            this.toPrevMenuBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // contentControl
@@ -41,16 +42,29 @@
             this.contentControl.TabIndex = 0;
             this.contentControl.Text = "control1";
             // 
+            // toPrevMenuBtn
+            // 
+            this.toPrevMenuBtn.Location = new System.Drawing.Point(12, 12);
+            this.toPrevMenuBtn.Name = "toPrevMenuBtn";
+            this.toPrevMenuBtn.Size = new System.Drawing.Size(116, 56);
+            this.toPrevMenuBtn.TabIndex = 1;
+            this.toPrevMenuBtn.Text = "Go Back";
+            this.toPrevMenuBtn.UseVisualStyleBackColor = true;
+            this.toPrevMenuBtn.Click += new System.EventHandler(this.toPrevMenuBtn_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.toPrevMenuBtn);
             this.Controls.Add(this.contentControl);
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.Button toPrevMenuBtn;
 
         private System.Windows.Forms.Control contentControl;
 

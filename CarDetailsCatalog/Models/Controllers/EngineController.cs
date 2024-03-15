@@ -27,9 +27,16 @@ namespace CarDetailsCatalog.Models.Controllers
             }
         }
 
-        public static List<Engine> GetAll()
+        public List<Engine> GetAll()
         {
             return Instance._repository.GetAll();
         }
+
+        public List<Engine> GetAllByCarId(int carId)
+        {
+            return Instance._repository.GetAllByCarId(carId);
+        }
+
+        // TODO: maybe 1 repo for diff detail controllers
     }
 }

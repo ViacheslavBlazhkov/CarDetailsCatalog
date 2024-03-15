@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using CarDetailsCatalog.Constants;
+using CarDetailsCatalog.Seeders;
+using CarDetailsCatalog.Seeders.Details;
 
 namespace CarDetailsCatalog
 {
@@ -12,6 +14,14 @@ namespace CarDetailsCatalog
         {
             _form = this;
             InitializeComponent();
+            using (var context = new AppDbContext())
+            {
+                context.Database.Delete();
+                context.Database.CreateIfNotExists();
+                new CarSeeder(context).Seed();
+                new EngineSeeder(context).Seed();
+            }
+
             contentControl.Controls.Add(ContentController.GetInstance().GetBrandsView());
         }
 
@@ -25,12 +35,86 @@ namespace CarDetailsCatalog
             return _form;
         }
 
+        public void ChangeControlToBrandsView(object sender, EventArgs e) // TODO: optimize these methods
+        {
+            ContentController.GetInstance().CurrentMenu = Constants.Menu.Brands;
+            contentControl.Controls.Clear();
+            contentControl.Controls.Add(ContentController.GetInstance().GetBrandsView());
+        }
+
+        public void ChangeControlToBrandsView()
+        {
+            ContentController.GetInstance().CurrentMenu = Constants.Menu.Brands;
+            contentControl.Controls.Clear();
+            contentControl.Controls.Add(ContentController.GetInstance().GetBrandsView());
+        }
+
         public void ChangeControlToModelsView(object sender, EventArgs e)
         {
-            var chosenBrand = ((Button)sender).Text;
-            var brand = (Brand)Enum.Parse(typeof(Brand), chosenBrand);
+            var brand = (Brand)Enum.Parse(typeof(Brand), ((Button)sender).Text);
+            ContentController.GetInstance().CurrentMenu = Constants.Menu.Models;
+            ContentController.GetInstance().ChosenBrand = brand;
             contentControl.Controls.Clear();
-            contentControl.Controls.Add(ContentController.GetInstance().GetModelsView((int)brand));
+            contentControl.Controls.Add(ContentController.GetInstance().GetModelsView());
+        }
+
+        public void ChangeControlToModelsView(Brand brand)
+        {
+            ContentController.GetInstance().CurrentMenu = Constants.Menu.Models;
+            ContentController.GetInstance().ChosenBrand = brand;
+            contentControl.Controls.Clear();
+            contentControl.Controls.Add(ContentController.GetInstance().GetModelsView());
+        }
+
+        public void ChangeControlToDetailTypesView(object sender, EventArgs e)
+        {
+            var model = ((Button)sender).Text;
+            ContentController.GetInstance().ChosenModel = model;
+            ContentController.GetInstance().CurrentMenu = Constants.Menu.DetailTypes;
+            contentControl.Controls.Clear();
+            contentControl.Controls.Add(ContentController.GetInstance().GetDetailTypesView());
+        }
+
+        public void ChangeControlToDetailTypesView()
+        {
+            ContentController.GetInstance().CurrentMenu = Constants.Menu.DetailTypes;
+            contentControl.Controls.Clear();
+            contentControl.Controls.Add(ContentController.GetInstance().GetDetailTypesView());
+        }
+
+        public void ChangeControlToDetailsView(object sender, EventArgs e)
+        {
+            var detailType = (DetailType)Enum.Parse(typeof(DetailType), ((Button)sender).Text);
+            ContentController.GetInstance().ChosenDetailType = detailType;
+            ContentController.GetInstance().CurrentMenu = Constants.Menu.Details;
+            contentControl.Controls.Clear();
+            contentControl.Controls.Add(ContentController.GetInstance().GetDetailsView());
+        }
+
+        public void ChangeControlToDetailsView(DetailType detailType)
+        {
+            ContentController.GetInstance().ChosenDetailType = detailType;
+            ContentController.GetInstance().CurrentMenu = Constants.Menu.Details;
+            contentControl.Controls.Clear();
+            contentControl.Controls.Add(ContentController.GetInstance().GetDetailsView());
+        }
+
+        private void toPrevMenuBtn_Click(object sender, EventArgs e)
+        {
+            switch (ContentController.GetInstance().CurrentMenu)
+            {
+                case Constants.Menu.Brands:
+                    break;
+                case Constants.Menu.Models:
+                    ChangeControlToBrandsView();
+                    break;
+                case Constants.Menu.DetailTypes:
+                    ChangeControlToModelsView(ContentController.GetInstance().ChosenBrand);
+                    break;
+                case Constants.Menu.Details:
+                    ChangeControlToDetailTypesView();
+                    break;
+            }
         }
     }
 }

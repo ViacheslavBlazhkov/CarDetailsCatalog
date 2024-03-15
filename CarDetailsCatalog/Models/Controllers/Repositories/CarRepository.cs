@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using CarDetailsCatalog.Constants;
 
 namespace CarDetailsCatalog.Models.Controllers.Repositories
 {
@@ -13,6 +14,11 @@ namespace CarDetailsCatalog.Models.Controllers.Repositories
         {
             _context = context;
             _dbSet = context.Set<Car>();
+        }
+
+        public Car FindByBrandAndModel(Brand brand, string model)
+        {
+            return _dbSet.FirstOrDefault(car => car.BrandId == (int)brand && car.Model == model);
         }
 
         public List<Car> GetAll()

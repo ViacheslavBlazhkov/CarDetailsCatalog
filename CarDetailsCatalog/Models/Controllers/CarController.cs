@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using CarDetailsCatalog.Constants;
 using CarDetailsCatalog.Models.Controllers.Repositories;
 
 namespace CarDetailsCatalog.Models.Controllers
@@ -26,12 +27,17 @@ namespace CarDetailsCatalog.Models.Controllers
             }
         }
 
-        public static List<Car> GetAll()
+        public Car FindByBrandAndModel(Brand brand, string model)
+        {
+            return Instance._repository.FindByBrandAndModel(brand, model);
+        }
+
+        public List<Car> GetAll()
         {
             return Instance._repository.GetAll();
         }
 
-        public static List<Car> GetModelsByBrandId(int brandId)
+        public List<Car> GetModelsByBrandId(int brandId)
         {
             return Instance._repository.GetModelsByBrandId(brandId);
         }

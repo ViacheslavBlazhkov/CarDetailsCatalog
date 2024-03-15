@@ -20,5 +20,10 @@ namespace CarDetailsCatalog.Models.Controllers.Repositories
         {
             return _dbSet.ToList();
         }
+
+        public List<Engine> GetAllByCarId(int carId)
+        {
+            return _dbSet.Where(e => e.SuitableCarIds != null && e.SuitableCarIds.Contains(carId.ToString())).ToList();
+        }
     }
 }
