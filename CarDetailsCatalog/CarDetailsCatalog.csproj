@@ -104,6 +104,12 @@
     <ItemGroup>
         <None Include="App.config" />
     </ItemGroup>
+    <ItemGroup>
+      <Content Include="Resources\Images\Cars\Brands\audi.png" />
+      <Content Include="Resources\Images\Cars\Brands\bmw.png" />
+      <Content Include="Resources\Images\Cars\Brands\porsche.png" />
+      <Content Include="Resources\Images\Cars\Brands\subaru.png" />
+    </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
       <PropertyGroup>

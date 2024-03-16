@@ -35,12 +35,6 @@ namespace CarDetailsCatalog
             return _form;
         }
 
-        public void ChangeControlToBrandsView(object sender, EventArgs e) // TODO: optimize these methods
-        {
-            ContentController.GetInstance().CurrentMenu = Constants.Menu.Brands;
-            contentControl.Controls.Clear();
-            contentControl.Controls.Add(ContentController.GetInstance().GetBrandsView());
-        }
 
         public void ChangeControlToBrandsView()
         {
@@ -52,14 +46,12 @@ namespace CarDetailsCatalog
         public void ChangeControlToModelsView(object sender, EventArgs e)
         {
             var brand = (Brand)Enum.Parse(typeof(Brand), ((Button)sender).Text);
-            ContentController.GetInstance().CurrentMenu = Constants.Menu.Models;
-            ContentController.GetInstance().ChosenBrand = brand;
-            contentControl.Controls.Clear();
-            contentControl.Controls.Add(ContentController.GetInstance().GetModelsView());
+            ChangeControlToModelsView(brand);
         }
-
+        
         public void ChangeControlToModelsView(Brand brand)
         {
+            toPrevMenuBtn.Show();
             ContentController.GetInstance().CurrentMenu = Constants.Menu.Models;
             ContentController.GetInstance().ChosenBrand = brand;
             contentControl.Controls.Clear();
@@ -70,9 +62,7 @@ namespace CarDetailsCatalog
         {
             var model = ((Button)sender).Text;
             ContentController.GetInstance().ChosenModel = model;
-            ContentController.GetInstance().CurrentMenu = Constants.Menu.DetailTypes;
-            contentControl.Controls.Clear();
-            contentControl.Controls.Add(ContentController.GetInstance().GetDetailTypesView());
+            ChangeControlToDetailTypesView();
         }
 
         public void ChangeControlToDetailTypesView()
@@ -85,10 +75,7 @@ namespace CarDetailsCatalog
         public void ChangeControlToDetailsView(object sender, EventArgs e)
         {
             var detailType = (DetailType)Enum.Parse(typeof(DetailType), ((Button)sender).Text);
-            ContentController.GetInstance().ChosenDetailType = detailType;
-            ContentController.GetInstance().CurrentMenu = Constants.Menu.Details;
-            contentControl.Controls.Clear();
-            contentControl.Controls.Add(ContentController.GetInstance().GetDetailsView());
+            ChangeControlToDetailsView(detailType);
         }
 
         public void ChangeControlToDetailsView(DetailType detailType)
@@ -106,6 +93,7 @@ namespace CarDetailsCatalog
                 case Constants.Menu.Brands:
                     break;
                 case Constants.Menu.Models:
+                    toPrevMenuBtn.Hide();
                     ChangeControlToBrandsView();
                     break;
                 case Constants.Menu.DetailTypes:

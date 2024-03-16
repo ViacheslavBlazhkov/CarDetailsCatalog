@@ -37,55 +37,32 @@ namespace CarDetailsCatalog
 
         public Control GetBrandsView()
         {
-            var control = GetControl();
-            int distance = 0;
-            foreach (var car in (Brand[])Enum.GetValues(typeof(Brand)))
+            var brands = Enum.GetNames(typeof(Brand));
+            var control = GetControlWithButtons(brands, MainForm.GetForm().ChangeControlToModelsView);
+            foreach (Button btn in control.Controls)
             {
-                var listItem = GetListItem(car.ToString());
-                listItem.Location = new Point(0, distance);
-                listItem.Click += MainForm.GetForm().ChangeControlToModelsView;
-                control.Controls.Add(listItem);
-                distance += 80;
+                btn.Image = Car.GetImageFor(btn.Text);
             }
-
             return control;
         }
-
+        
         public Control GetModelsView()
         {
-            var control = GetControl();
-            int distance = 0;
-            foreach (var car in CarController.Instance.GetModelsByBrandId((int)ChosenBrand))
-            {
-                var listItem = GetListItem(car.Model);
-                listItem.Location = new Point(0, distance);
-                listItem.Click += MainForm.GetForm().ChangeControlToDetailTypesView;
-                control.Controls.Add(listItem);
-                distance += 80;
-            }
-
+            var models = CarController.Instance.GetModelsByBrandId((int)ChosenBrand);
+            var titles = models.Select(car => car.Model).ToArray();
+            var control = GetControlWithButtons(titles, MainForm.GetForm().ChangeControlToDetailTypesView);
             return control;
         }
 
         public Control GetDetailTypesView()
         {
-            var control = GetControl();
-            int distance = 0;
-            foreach (var detailType in (DetailType[])Enum.GetValues(typeof(DetailType)))
-            {
-                var listItem = GetListItem(detailType.ToString());
-                listItem.Location = new Point(0, distance);
-                listItem.Click += MainForm.GetForm().ChangeControlToDetailsView;
-                control.Controls.Add(listItem);
-                distance += 80;
-            }
-
+            var detailTypes = Enum.GetNames(typeof(DetailType));
+            var control = GetControlWithButtons(detailTypes, MainForm.GetForm().ChangeControlToDetailsView);
             return control;
         }
 
         public Control GetDetailsView()
         {
-            var control = GetControl();
             var detailType = ChosenDetailType;
             List<ADetail> details = null;
             Car car = CarController.Instance.FindByBrandAndModel(ChosenBrand, ChosenModel);
@@ -103,39 +80,60 @@ namespace CarDetailsCatalog
                 case DetailType.Tires:
                     details = new List<ADetail>();
                     break;
+                default:
+                    details = new List<ADetail>();
+                    break;
             }
+            var titles = details.Select(d => d.Name).ToArray();
+            var control = GetControlWithButtons(titles, (sender, args) => {});
+            return control;
+        }
 
-            int distance = 0;
-            foreach (var detail in details)
+        private Control GetControlWithButtons(string[] titles, EventHandler method)
+        {
+            var control = GetControl();
+            int padding = int.Parse((control.Width * 0.01).ToString());
+            int distanceX = padding;
+            int distanceY = 5;
+            int columnSpacing = 20;
+
+            foreach (var item in titles)
             {
-                var listItem = GetListItem(detail.Name);
-                listItem.Location = new Point(0, distance);
+                var listItem = GetListItem(item);
+                listItem.Location = new Point(distanceX, distanceY);
+                listItem.Click += method;
                 control.Controls.Add(listItem);
-                distance += 80;
+                distanceX += listItem.Width + columnSpacing;
+                if (distanceX + listItem.Width - 100 > control.Width)
+                {
+                    distanceX = padding;
+                    distanceY += listItem.Height + columnSpacing;
+                }
             }
 
             return control;
         }
 
-        public Control GetControl() // TODO: stylized this
+        public Control GetControl()
         {
             return new Control
             {
                 BackColor = Color.Pink,
-                Padding = new Padding(20),
                 Size = new Size(600, 500),
             };
         }
 
-        public Button GetListItem(string text) // TODO: stylized this
+        public Button GetListItem(string text)
         {
             return new Button
             {
+                Cursor = Cursors.Hand,
                 BackColor = Color.LightGray,
                 Font = new Font("Serif", 24),
-                Location = new Point(0, 0),
-                Size = new Size(200, 70),
+                Size = new Size(260, 100),
                 Text = text,
+                ImageAlign = ContentAlignment.MiddleLeft,
+                TextAlign = ContentAlignment.MiddleRight
             };
         }
     }

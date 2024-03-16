@@ -50,6 +50,7 @@
             this.toPrevMenuBtn.TabIndex = 1;
             this.toPrevMenuBtn.Text = "Go Back";
             this.toPrevMenuBtn.UseVisualStyleBackColor = true;
+            this.toPrevMenuBtn.Visible = false;
             this.toPrevMenuBtn.Click += new System.EventHandler(this.toPrevMenuBtn_Click);
             // 
             // MainForm

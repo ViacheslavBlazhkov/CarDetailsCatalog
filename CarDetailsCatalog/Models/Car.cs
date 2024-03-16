@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Drawing;
 using CarDetailsCatalog.Constants;
 
 namespace CarDetailsCatalog.Models
@@ -34,6 +35,27 @@ namespace CarDetailsCatalog.Models
                 { Country.Usa, "Usa" },
             };
             return titles[country];
+        }
+    
+        public static Image GetImageFor(string title) // TODO: refactor path
+        {
+            var imagePath = "C:\\QWERTY\\Projects\\C#\\AP\\CarDetailsCatalog\\CarDetailsCatalog\\Resources\\Images";
+            switch (title)
+            {
+                case "Audi":
+                    imagePath += "\\Cars\\Brands\\audi.png";
+                    break;
+                case "Bmw":
+                    imagePath += "\\Cars\\Brands\\bmw.png";
+                    break;
+                case "Porsche":
+                    imagePath += "\\Cars\\Brands\\porsche.png";
+                    break;
+                case "Subaru":
+                    imagePath += "\\Cars\\Brands\\subaru.png";
+                    break;
+            }
+            return new Bitmap(Image.FromFile(imagePath), 95, 95);
         }
     }
 }
