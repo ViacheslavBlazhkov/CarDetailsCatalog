@@ -8,10 +8,12 @@ namespace CarDetailsCatalog.Models.Controllers
     {
         private static EngineController _instance;
         private readonly EngineRepository _repository;
+        private readonly DetailRepository _detailRepository;
 
-        public EngineController(EngineRepository repository)
+        public EngineController(EngineRepository repository, DetailRepository detailRepository)
         {
             _repository = repository;
+            _detailRepository = detailRepository;
         }
 
         public static EngineController Instance
@@ -20,7 +22,10 @@ namespace CarDetailsCatalog.Models.Controllers
             {
                 if (_instance == null)
                 {
-                    _instance = new EngineController(new EngineRepository(new AppDbContext()));
+                    _instance = new EngineController(
+                        new EngineRepository(new AppDbContext()),
+                        new DetailRepository(new AppDbContext())
+                    );
                 }
 
                 return _instance;
@@ -37,6 +42,9 @@ namespace CarDetailsCatalog.Models.Controllers
             return Instance._repository.GetAllByCarId(carId);
         }
 
-        // TODO: maybe 1 repo for diff detail controllers
+        public Engine FindByName(string name)
+        {
+            return (Engine)Instance._detailRepository.FindByName(name);
+        }
     }
 }

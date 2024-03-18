@@ -1,4 +1,5 @@
-﻿using CarDetailsCatalog.Models.Abstracts;
+﻿using System.Collections.Generic;
+using CarDetailsCatalog.Models.Abstracts;
 
 namespace CarDetailsCatalog.Models.Details
 {
@@ -7,5 +8,14 @@ namespace CarDetailsCatalog.Models.Details
         public int HorsePower { get; set; }
         public int Torque { get; set; }
         public double FuelConsumption { get; set; }
+
+        public new Dictionary<string, string> GetCharacteristics()
+        {
+            var dict = base.GetCharacteristics();
+            dict["Кінські сили"] = HorsePower.ToString();
+            dict["Крутний момент"] = Torque.ToString();
+            dict["Розхід палива"] = FuelConsumption.ToString();
+            return dict;
+        }
     }
 }

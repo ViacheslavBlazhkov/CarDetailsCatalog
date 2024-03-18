@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using CarDetailsCatalog.Models;
+using CarDetailsCatalog.Models.Abstracts;
 using CarDetailsCatalog.Models.Details;
 
 namespace CarDetailsCatalog
@@ -7,6 +8,7 @@ namespace CarDetailsCatalog
     public class AppDbContext : DbContext
     {
         public DbSet<Car> Cars { get; set; }
+        public DbSet<ADetail> Details { get; set; }
         public DbSet<Engine> Engines { get; set; }
 
         public AppDbContext()

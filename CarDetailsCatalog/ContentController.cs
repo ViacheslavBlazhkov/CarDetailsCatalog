@@ -7,6 +7,7 @@ using CarDetailsCatalog.Constants;
 using CarDetailsCatalog.Models;
 using CarDetailsCatalog.Models.Abstracts;
 using CarDetailsCatalog.Models.Controllers;
+using CarDetailsCatalog.Models.Details;
 using Menu = CarDetailsCatalog.Constants.Menu;
 
 namespace CarDetailsCatalog
@@ -18,6 +19,7 @@ namespace CarDetailsCatalog
         public Brand ChosenBrand;
         public string ChosenModel;
         public DetailType ChosenDetailType;
+        public ADetail ChosenDetail;
 
         private static ContentController _instance;
 
@@ -41,11 +43,13 @@ namespace CarDetailsCatalog
             var control = GetControlWithButtons(brands, MainForm.GetForm().ChangeControlToModelsView);
             foreach (Button btn in control.Controls)
             {
-                btn.Image = Car.GetImageFor(btn.Text);
+                Brand brand = (Brand)Enum.Parse(typeof(Brand), btn.Text);
+                btn.Image = Car.GetImageForBrand(brand);
             }
+
             return control;
         }
-        
+
         public Control GetModelsView()
         {
             var models = CarController.Instance.GetModelsByBrandId((int)ChosenBrand);
@@ -58,13 +62,18 @@ namespace CarDetailsCatalog
         {
             var detailTypes = Enum.GetNames(typeof(DetailType));
             var control = GetControlWithButtons(detailTypes, MainForm.GetForm().ChangeControlToDetailsView);
+            foreach (Button btn in control.Controls)
+            {
+                DetailType detailType = (DetailType)Enum.Parse(typeof(DetailType), btn.Text);
+                btn.Image = ADetail.GetImageForDetailType(detailType);
+            }
+
             return control;
         }
 
         public Control GetDetailsView()
         {
-            var detailType = ChosenDetailType;
-            List<ADetail> details = null;
+            List<ADetail> details;
             Car car = CarController.Instance.FindByBrandAndModel(ChosenBrand, ChosenModel);
             switch (ChosenDetailType) // TODO: add other details
             {
@@ -84,9 +93,15 @@ namespace CarDetailsCatalog
                     details = new List<ADetail>();
                     break;
             }
+
             var titles = details.Select(d => d.Name).ToArray();
-            var control = GetControlWithButtons(titles, (sender, args) => {});
+            var control = GetControlWithButtons(titles, MainForm.GetForm().ChangeControlToDetailInfoView);
             return control;
+        }
+
+        public Control GetDetailInfoView()
+        {
+            return GetControlWithDetailInfo(ChosenDetail);
         }
 
         private Control GetControlWithButtons(string[] titles, EventHandler method)
@@ -111,6 +126,71 @@ namespace CarDetailsCatalog
                 }
             }
 
+            return control;
+        }
+
+        private Control GetControlWithDetailInfo(ADetail detail)
+        {
+            var control = GetControl();
+            int distanceY = 80;
+
+            Dictionary<string, string> detailCharacteristics;
+            Image defaultImage = ADetail.GetImageForDetailType(ChosenDetailType, 200, 200);
+            switch (ChosenDetailType)
+            {
+                case DetailType.Brakes:
+                    detailCharacteristics = detail.GetCharacteristics();
+                    break;
+                case DetailType.Engine:
+                    detailCharacteristics = ((Engine)detail).GetCharacteristics();
+                    break;
+                case DetailType.Gearbox:
+                    detailCharacteristics = detail.GetCharacteristics();
+                    break;
+                case DetailType.Tires:
+                    detailCharacteristics = detail.GetCharacteristics();
+                    break;
+                default:
+                    detailCharacteristics = detail.GetCharacteristics();
+                    break;
+            }
+
+            control.Controls.Add(GetDetailInfoHeader(detailCharacteristics["Назва"]));
+            foreach (var characteristic in detailCharacteristics.Where(c => c.Key != "Назва"))
+            {
+                control.Controls.Add(new Label
+                {
+                    Font = new Font("Serif", 14),
+                    Location = new Point(0, distanceY),
+                    Size = new Size((int)(control.Width / 1.7), 25),
+                    Text = $"{characteristic.Key}: {characteristic.Value}"
+                });
+                distanceY += 25;
+            }
+
+            control.Controls.Add(new PictureBox
+            {
+                Image = defaultImage,
+                Location = new Point((int)(control.Width / 1.7), 80),
+                Size = new Size(200, 200)
+            });
+            return control;
+        }
+
+        private static Control GetDetailInfoHeader(string title)
+        {
+            var control = new Control()
+            {
+                BackColor = Color.White,
+                Size = new Size(600, 60),
+            };
+            control.Controls.Add(new Label
+            {
+                Font = new Font("Serif", 18, FontStyle.Bold),
+                Size = new Size(590, 55),
+                Text = title,
+                TextAlign = ContentAlignment.MiddleCenter
+            });
             return control;
         }
 

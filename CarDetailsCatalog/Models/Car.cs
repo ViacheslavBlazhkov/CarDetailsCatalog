@@ -36,26 +36,31 @@ namespace CarDetailsCatalog.Models
             };
             return titles[country];
         }
-    
-        public static Image GetImageFor(string title) // TODO: refactor path
+
+        public static Image GetImageForBrand(Brand brand, int width = 95, int height = 95)
         {
-            var imagePath = "C:\\QWERTY\\Projects\\C#\\AP\\CarDetailsCatalog\\CarDetailsCatalog\\Resources\\Images";
-            switch (title)
+            var imagePath =
+                "C:\\QWERTY\\Projects\\C#\\AP\\CarDetailsCatalog\\CarDetailsCatalog\\Resources\\Images\\Brands";
+            switch (brand)
             {
-                case "Audi":
-                    imagePath += "\\Cars\\Brands\\audi.png";
+                case Brand.Audi:
+                    imagePath += "\\audi.png";
                     break;
-                case "Bmw":
-                    imagePath += "\\Cars\\Brands\\bmw.png";
+                case Brand.Bmw:
+                    imagePath += "\\bmw.png";
                     break;
-                case "Porsche":
-                    imagePath += "\\Cars\\Brands\\porsche.png";
+                case Brand.Porsche:
+                    imagePath += "\\porsche.png";
                     break;
-                case "Subaru":
-                    imagePath += "\\Cars\\Brands\\subaru.png";
+                case Brand.Subaru:
+                    imagePath += "\\subaru.png";
+                    break;
+                default:
+                    imagePath += "\\default.png";
                     break;
             }
-            return new Bitmap(Image.FromFile(imagePath), 95, 95);
+
+            return new Bitmap(Image.FromFile(imagePath), width, height);
         }
     }
 }

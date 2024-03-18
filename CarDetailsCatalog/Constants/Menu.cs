@@ -5,6 +5,7 @@
         Brands,
         Models,
         DetailTypes,
-        Details
+        Details,
+        DetailInfo
     }
 }

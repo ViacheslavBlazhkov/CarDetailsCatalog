@@ -71,6 +71,7 @@
         <Compile Include="Models\Controllers\CarController.cs" />
         <Compile Include="Models\Controllers\EngineController.cs" />
         <Compile Include="Models\Controllers\Repositories\CarRepository.cs" />
+        <Compile Include="Models\Controllers\Repositories\DetailRepository.cs" />
         <Compile Include="Models\Controllers\Repositories\EngineRepository.cs" />
         <Compile Include="Models\Details\Engine.cs" />
         <Compile Include="Models\Factories\CarFactory.cs" />
@@ -105,10 +106,16 @@
         <None Include="App.config" />
     </ItemGroup>
     <ItemGroup>
-      <Content Include="Resources\Images\Cars\Brands\audi.png" />
-      <Content Include="Resources\Images\Cars\Brands\bmw.png" />
-      <Content Include="Resources\Images\Cars\Brands\porsche.png" />
-      <Content Include="Resources\Images\Cars\Brands\subaru.png" />
+      <Content Include="Resources\Images\Brands\default.png" />
+      <Content Include="Resources\Images\Brands\audi.png" />
+      <Content Include="Resources\Images\Brands\bmw.png" />
+      <Content Include="Resources\Images\Brands\porsche.png" />
+      <Content Include="Resources\Images\Brands\subaru.png" />
+      <Content Include="Resources\Images\DetailTypes\default.png" />
+      <Content Include="Resources\Images\DetailTypes\brakes.png" />
+      <Content Include="Resources\Images\DetailTypes\gearbox.png" />
+      <Content Include="Resources\Images\DetailTypes\tires.png" />
+      <Content Include="Resources\Images\DetailTypes\engine.png" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

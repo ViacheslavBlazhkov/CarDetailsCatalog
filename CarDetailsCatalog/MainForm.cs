@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using CarDetailsCatalog.Constants;
+using CarDetailsCatalog.Models.Abstracts;
+using CarDetailsCatalog.Models.Controllers;
 using CarDetailsCatalog.Seeders;
 using CarDetailsCatalog.Seeders.Details;
 
@@ -48,7 +50,7 @@ namespace CarDetailsCatalog
             var brand = (Brand)Enum.Parse(typeof(Brand), ((Button)sender).Text);
             ChangeControlToModelsView(brand);
         }
-        
+
         public void ChangeControlToModelsView(Brand brand)
         {
             toPrevMenuBtn.Show();
@@ -86,6 +88,34 @@ namespace CarDetailsCatalog
             contentControl.Controls.Add(ContentController.GetInstance().GetDetailsView());
         }
 
+        public void ChangeControlToDetailInfoView(object sender, EventArgs e)
+        {
+            var detailText = ((Button)sender).Text;
+            ADetail detail;
+            switch (ContentController.GetInstance().ChosenDetailType)
+            {
+                case DetailType.Brakes:
+                    detail = EngineController.Instance.FindByName(detailText);
+                    break;
+                case DetailType.Engine:
+                    detail = EngineController.Instance.FindByName(detailText);
+                    break;
+                case DetailType.Gearbox:
+                    detail = EngineController.Instance.FindByName(detailText);
+                    break;
+                case DetailType.Tires:
+                    detail = EngineController.Instance.FindByName(detailText);
+                    break;
+                default:
+                    throw new Exception("Undefined Detail Type");
+            }
+
+            ContentController.GetInstance().ChosenDetail = detail;
+            ContentController.GetInstance().CurrentMenu = Constants.Menu.DetailInfo;
+            contentControl.Controls.Clear();
+            contentControl.Controls.Add(ContentController.GetInstance().GetDetailInfoView());
+        }
+
         private void toPrevMenuBtn_Click(object sender, EventArgs e)
         {
             switch (ContentController.GetInstance().CurrentMenu)
@@ -101,6 +131,9 @@ namespace CarDetailsCatalog
                     break;
                 case Constants.Menu.Details:
                     ChangeControlToDetailTypesView();
+                    break;
+                case Constants.Menu.DetailInfo:
+                    ChangeControlToDetailsView(ContentController.GetInstance().ChosenDetailType);
                     break;
             }
         }
