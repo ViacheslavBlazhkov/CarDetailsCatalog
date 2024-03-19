@@ -22,6 +22,7 @@ namespace CarDetailsCatalog
                 context.Database.CreateIfNotExists();
                 new CarSeeder(context).Seed();
                 new EngineSeeder(context).Seed();
+                new GearboxSeeder(context).Seed();
             }
 
             contentControl.Controls.Add(ContentController.GetInstance().GetBrandsView());
@@ -101,7 +102,7 @@ namespace CarDetailsCatalog
                     detail = EngineController.Instance.FindByName(detailText);
                     break;
                 case DetailType.Gearbox:
-                    detail = EngineController.Instance.FindByName(detailText);
+                    detail = GearboxController.Instance.FindByName(detailText);
                     break;
                 case DetailType.Tires:
                     detail = EngineController.Instance.FindByName(detailText);

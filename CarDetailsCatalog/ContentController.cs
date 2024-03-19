@@ -84,7 +84,7 @@ namespace CarDetailsCatalog
                     details = EngineController.Instance.GetAllByCarId(car.Id).ToList<ADetail>();
                     break;
                 case DetailType.Gearbox:
-                    details = new List<ADetail>();
+                    details = GearboxController.Instance.GetAllByCarId(car.Id).ToList<ADetail>();
                     break;
                 case DetailType.Tires:
                     details = new List<ADetail>();
@@ -145,7 +145,7 @@ namespace CarDetailsCatalog
                     detailCharacteristics = ((Engine)detail).GetCharacteristics();
                     break;
                 case DetailType.Gearbox:
-                    detailCharacteristics = detail.GetCharacteristics();
+                    detailCharacteristics = ((Gearbox)detail).GetCharacteristics();
                     break;
                 case DetailType.Tires:
                     detailCharacteristics = detail.GetCharacteristics();

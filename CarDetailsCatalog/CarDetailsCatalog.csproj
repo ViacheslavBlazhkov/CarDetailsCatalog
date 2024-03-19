@@ -70,15 +70,19 @@
         <Compile Include="Models\Car.cs" />
         <Compile Include="Models\Controllers\CarController.cs" />
         <Compile Include="Models\Controllers\EngineController.cs" />
+        <Compile Include="Models\Controllers\GearboxController.cs" />
         <Compile Include="Models\Controllers\Repositories\CarRepository.cs" />
         <Compile Include="Models\Controllers\Repositories\DetailRepository.cs" />
         <Compile Include="Models\Controllers\Repositories\EngineRepository.cs" />
+        <Compile Include="Models\Controllers\Repositories\GearboxRepository.cs" />
         <Compile Include="Models\Details\Engine.cs" />
+        <Compile Include="Models\Details\Gearbox.cs" />
         <Compile Include="Models\Factories\CarFactory.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="Seeders\CarSeeder.cs" />
         <Compile Include="Seeders\Details\EngineSeeder.cs" />
+        <Compile Include="Seeders\Details\GearboxSeeder.cs" />
         <EmbeddedResource Include="MainForm.resx">
           <DependentUpon>MainForm.cs</DependentUpon>
         </EmbeddedResource>

@@ -4,8 +4,10 @@
     {
         Audi,
         Bmw,
+        Getrag,
         ToyoTires,
         Volkswagen,
+        ZfFriedrichshafenAg
     }
 
     public enum DetailType
@@ -14,5 +16,11 @@
         Engine,
         Gearbox,
         Tires,
+    }
+
+    public enum GearboxType
+    {
+        Manual,
+        Automatic
     }
 }

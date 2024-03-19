@@ -40,9 +40,11 @@ namespace CarDetailsCatalog.Models.Abstracts
             var titles = new Dictionary<Producer, string>()
             {
                 { Producer.Audi, "Audi" },
+                { Producer.Getrag, "Getrag" },
                 { Producer.Bmw, "BMW" },
                 { Producer.ToyoTires, "Toyo Tires" },
                 { Producer.Volkswagen, "Volkswagen" },
+                { Producer.ZfFriedrichshafenAg, "ZF Friedrichshafen AG" },
             };
             return titles[id];
         }

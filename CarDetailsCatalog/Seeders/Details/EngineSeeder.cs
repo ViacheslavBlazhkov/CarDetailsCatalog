@@ -24,7 +24,7 @@ namespace CarDetailsCatalog.Seeders.Details
                 {
                     Name = "1.6L 4AT (101 HP)",
                     ProducerId = (int)Producer.Volkswagen,
-                    SuitableCarIds = ADetail.GetSuitableCarIdsStringByArray(new int[] { audiA41994.Id }),
+                    SuitableCarIds = ADetail.GetSuitableCarIdsStringByArray(new[] { audiA41994.Id }),
                     Price = 500,
                     HorsePower = 101,
                     Torque = 140,
@@ -34,7 +34,7 @@ namespace CarDetailsCatalog.Seeders.Details
                 {
                     Name = "1.6L 5MT (101 HP)",
                     ProducerId = (int)Producer.Volkswagen,
-                    SuitableCarIds = ADetail.GetSuitableCarIdsStringByArray(new int[] { audiA41994.Id }),
+                    SuitableCarIds = ADetail.GetSuitableCarIdsStringByArray(new[] { audiA41994.Id }),
                     Price = 500,
                     HorsePower = 101,
                     Torque = 140,
@@ -44,7 +44,7 @@ namespace CarDetailsCatalog.Seeders.Details
                 {
                     Name = "1.8L 4AT (125 HP)",
                     ProducerId = (int)Producer.Volkswagen,
-                    SuitableCarIds = ADetail.GetSuitableCarIdsStringByArray(new int[] { audiA41994.Id }),
+                    SuitableCarIds = ADetail.GetSuitableCarIdsStringByArray(new[] { audiA41994.Id }),
                     Price = 650,
                     HorsePower = 125,
                     Torque = 173,

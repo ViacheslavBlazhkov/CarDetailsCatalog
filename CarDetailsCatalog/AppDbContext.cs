@@ -10,6 +10,7 @@ namespace CarDetailsCatalog
         public DbSet<Car> Cars { get; set; }
         public DbSet<ADetail> Details { get; set; }
         public DbSet<Engine> Engines { get; set; }
+        public DbSet<Gearbox> Gearboxes { get; set; }
 
         public AppDbContext()
         {
@@ -21,6 +22,7 @@ namespace CarDetailsCatalog
         {
             modelBuilder.Entity<Car>().HasKey(c => c.Id);
             modelBuilder.Entity<Engine>().HasKey(d => d.Id);
+            modelBuilder.Entity<Gearbox>().HasKey(d => d.Id);
 
             base.OnModelCreating(modelBuilder);
         }
