@@ -9,7 +9,7 @@ namespace CarDetailsCatalog.Models.Details
         public int Gears { get; set; }
         public GearboxType Type { get; set; }
 
-        public new Dictionary<string, string> GetCharacteristics()
+        public override Dictionary<string, string> GetCharacteristics()
         {
             var dict = base.GetCharacteristics();
             dict["Кількість передач"] = Gears.ToString();

@@ -67,8 +67,10 @@
             <DependentUpon>MainForm.cs</DependentUpon>
         </Compile>
         <Compile Include="Models\Abstracts\ADetail.cs" />
+        <Compile Include="Models\Abstracts\IDetail.cs" />
         <Compile Include="Models\Car.cs" />
         <Compile Include="Models\Controllers\CarController.cs" />
+        <Compile Include="Models\Controllers\DetailController.cs" />
         <Compile Include="Models\Controllers\EngineController.cs" />
         <Compile Include="Models\Controllers\GearboxController.cs" />
         <Compile Include="Models\Controllers\Repositories\CarRepository.cs" />

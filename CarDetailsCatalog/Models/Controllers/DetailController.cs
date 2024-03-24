@@ -1,0 +1,34 @@
+﻿using CarDetailsCatalog.Models.Abstracts;
+using CarDetailsCatalog.Models.Controllers.Repositories;
+
+namespace CarDetailsCatalog.Models.Controllers
+{
+    public class DetailController
+    {
+        private static DetailController _instance;
+        private readonly DetailRepository _repository;
+
+        public DetailController(DetailRepository repository)
+        {
+            _repository = repository;
+        }
+
+        public static DetailController Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new DetailController(new DetailRepository(new AppDbContext()));
+                }
+
+                return _instance;
+            }
+        }
+
+        public IDetail FindByName(string name)
+        {
+            return _repository.FindByName(name);
+        }
+    }
+}

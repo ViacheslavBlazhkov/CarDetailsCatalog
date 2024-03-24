@@ -6,6 +6,7 @@
         Models,
         DetailTypes,
         Details,
-        DetailInfo
+        DetailInfo,
+        Comparing
     }
 }

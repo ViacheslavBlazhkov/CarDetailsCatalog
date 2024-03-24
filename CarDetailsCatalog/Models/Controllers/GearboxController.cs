@@ -41,10 +41,5 @@ namespace CarDetailsCatalog.Models.Controllers
         {
             return Instance._repository.GetAllByCarId(carId);
         }
-
-        public Gearbox FindByName(string name)
-        {
-            return (Gearbox)Instance._detailRepository.FindByName(name);
-        }
     }
 }
