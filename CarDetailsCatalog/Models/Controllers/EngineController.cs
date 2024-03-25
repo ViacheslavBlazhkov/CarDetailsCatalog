@@ -14,18 +14,8 @@ namespace CarDetailsCatalog.Models.Controllers
             _repository = repository;
         }
 
-        public static EngineController Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new EngineController(new EngineRepository(new AppDbContext()));
-                }
-
-                return _instance;
-            }
-        }
+        public static EngineController Instance =>
+            _instance ?? (_instance = new EngineController(new EngineRepository(new AppDbContext())));
 
         public List<Engine> GetAll()
         {

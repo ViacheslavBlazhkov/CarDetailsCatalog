@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using CarDetailsCatalog.Models.Abstracts;
 
 namespace CarDetailsCatalog.Models.Details
@@ -14,7 +15,7 @@ namespace CarDetailsCatalog.Models.Details
             var dict = base.GetCharacteristics();
             dict["Кінські сили"] = HorsePower.ToString();
             dict["Крутний момент"] = Torque.ToString();
-            dict["Розхід палива"] = FuelConsumption.ToString();
+            dict["Розхід палива"] = FuelConsumption.ToString(CultureInfo.CurrentCulture);
             return dict;
         }
     }

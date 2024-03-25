@@ -14,18 +14,8 @@ namespace CarDetailsCatalog.Models.Controllers
             _repository = repository;
         }
 
-        public static CarController Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new CarController(new CarRepository(new AppDbContext()));
-                }
-
-                return _instance;
-            }
-        }
+        public static CarController Instance =>
+            _instance ?? (_instance = new CarController(new CarRepository(new AppDbContext())));
 
         public Car FindByBrandAndModel(Brand brand, string model)
         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using CarDetailsCatalog.Constants;
@@ -29,12 +30,7 @@ namespace CarDetailsCatalog
 
         public static ContentController GetInstance()
         {
-            if (_instance == null)
-            {
-                _instance = new ContentController();
-            }
-
-            return _instance;
+            return _instance ?? (_instance = new ContentController());
         }
 
         public Control GetBrandsView()
@@ -103,7 +99,7 @@ namespace CarDetailsCatalog
                 {
                     BackColor = Color.DarkSeaGreen,
                     Location = new Point(10, btn.Height - 50),
-                    Text = "+",
+                    Text = @"+",
                     Size = new Size(40, 40),
                     Tag = btn.Text
                 };
@@ -127,7 +123,7 @@ namespace CarDetailsCatalog
             };
             control.Controls.Add(new Label
             {
-                AccessibleName = "detailToCompare_0",
+                AccessibleName = @"detailToCompare_0",
                 BackColor = Color.DarkSeaGreen,
                 Font = new Font("Serif", 12),
                 Location = new Point(10, 0),
@@ -139,13 +135,13 @@ namespace CarDetailsCatalog
                 Font = new Font("Serif", 12),
                 Location = new Point(140, 0),
                 Size = new Size(40, 40),
-                Text = "X",
+                Text = @"X",
                 Tag = "detailToCompare_0"
             };
             removeBtn1.Click += RemoveDetailFromCompare;
             control.Controls.Add(new Label
             {
-                AccessibleName = "detailToCompare_1",
+                AccessibleName = @"detailToCompare_1",
                 BackColor = Color.DarkSeaGreen,
                 Font = new Font("Serif", 12),
                 Location = new Point(220, 0),
@@ -158,16 +154,18 @@ namespace CarDetailsCatalog
                 Location = new Point(350, 0),
                 Size = new Size(40, 40),
                 Tag = "detailToCompare_1",
-                Text = "X",
+                Text = @"X",
             };
             removeBtn2.Click += RemoveDetailFromCompare;
-            control.Controls.AddRange(new[] { removeBtn1, removeBtn2 });
+            control.Controls.AddRange(new Control[] { removeBtn1, removeBtn2 });
             var compareBtn = new Button
             {
+                AccessibleName = @"compareBtn",
                 BackColor = Color.DarkSeaGreen,
-                Text = "Порівняти",
+                Text = @"Порівняти",
                 Location = new Point(control.Width - 150, 0),
                 Size = new Size(100, 40),
+                Visible = false
             };
             compareBtn.Click += MainForm.GetForm().ChangeControlToComparingView;
             control.Controls.Add(compareBtn);
@@ -179,16 +177,16 @@ namespace CarDetailsCatalog
             var firstDetail = DetailController.Instance.FindByName(_detailsToCompare[0]);
             var secondDetail = DetailController.Instance.FindByName(_detailsToCompare[1]);
             var control = GetControl();
-            var paramss = ADetail.GetParamsWithColors(firstDetail.GetCharacteristics(),
+            var paramsWithColors = ADetail.GetParamsWithColors(firstDetail.GetCharacteristics(),
                 secondDetail.GetCharacteristics());
-            var leftSide = GetControlForDetail(firstDetail, control.Width / 2, control.Height, paramss[0]);
-            var rightSide = GetControlForDetail(secondDetail, control.Width / 2, control.Height, paramss[1]);
+            var leftSide = GetControlForDetail(firstDetail, control.Width / 2, control.Height, paramsWithColors[0]);
+            var rightSide = GetControlForDetail(secondDetail, control.Width / 2, control.Height, paramsWithColors[1]);
             rightSide.Location = new Point(control.Width / 2, 0);
             control.Controls.AddRange(new[] { leftSide, rightSide });
             return control;
         }
 
-        private Control GetControlForDetail(IDetail detail, int width, int height, Dictionary<string, Color> paramss)
+        private Control GetControlForDetail(IDetail detail, int width, int height, Dictionary<string, Color> paramsWithColors)
         {
             var distanceY = 100;
             var control = new Control
@@ -202,14 +200,14 @@ namespace CarDetailsCatalog
             control.Controls.Add(header);
             foreach (var characteristic in detailCharacteristics.Where(c => c.Key != "Назва"))
             {
-                var color = paramss.FirstOrDefault(p => p.Key == characteristic.Key).Value;
+                var color = paramsWithColors.FirstOrDefault(p => p.Key == characteristic.Key).Value;
                 control.Controls.Add(new Label
                 {
                     BackColor = color,
                     Font = new Font("Serif", 14),
                     Location = new Point(0, distanceY),
                     Size = new Size((int)(control.Width / 1.2), 25),
-                    Text = $"{characteristic.Key}: {characteristic.Value}"
+                    Text = $@"{characteristic.Key}: {characteristic.Value}"
                 });
                 distanceY += 25;
             }
@@ -234,6 +232,12 @@ namespace CarDetailsCatalog
                 }
 
                 _detailsToCompare.Add(elem);
+
+                if (_detailsToCompare.Count == 2)
+                {
+                    var compareBtn = (Button)FindControlByAccessibleName(MainForm.GetForm(), "compareBtn");
+                    compareBtn.Visible = true;
+                }
             }
         }
 
@@ -242,6 +246,8 @@ namespace CarDetailsCatalog
             var label = FindControlByAccessibleName(MainForm.GetForm(), ((Button)sender).Tag.ToString());
             _detailsToCompare.Remove(label.Text);
             label.Text = "";
+            var compareBtn = (Button)FindControlByAccessibleName(MainForm.GetForm(), "compareBtn");
+            compareBtn.Visible = false;
         }
 
         public Control GetDetailInfoView()
@@ -252,7 +258,7 @@ namespace CarDetailsCatalog
         private Control GetControlWithButtons(string[] titles, EventHandler method)
         {
             var control = GetControl();
-            int padding = int.Parse((control.Width * 0.01).ToString());
+            int padding = int.Parse((control.Width * 0.01).ToString(CultureInfo.CurrentCulture));
             int distanceX = padding;
             int distanceY = 5;
             int columnSpacing = 20;
@@ -290,7 +296,7 @@ namespace CarDetailsCatalog
                     Font = new Font("Serif", 14),
                     Location = new Point(0, distanceY),
                     Size = new Size((int)(control.Width / 1.7), 25),
-                    Text = $"{characteristic.Key}: {characteristic.Value}"
+                    Text = $@"{characteristic.Key}: {characteristic.Value}"
                 });
                 distanceY += 25;
             }
@@ -322,7 +328,7 @@ namespace CarDetailsCatalog
             return control;
         }
 
-        public Control GetControl()
+        private Control GetControl()
         {
             return new Control
             {
@@ -331,7 +337,7 @@ namespace CarDetailsCatalog
             };
         }
 
-        public Button GetListItem(string text)
+        private Button GetListItem(string text)
         {
             return new Button
             {

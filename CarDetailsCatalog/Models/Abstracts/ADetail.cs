@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using CarDetailsCatalog.Constants;
 
@@ -22,7 +23,7 @@ namespace CarDetailsCatalog.Models.Abstracts
             {
                 { "Назва", Name },
                 { "Виробник", GetProducerTitleFor((Producer)ProducerId) },
-                { "Ціна", Price.ToString() },
+                { "Ціна", Price.ToString(CultureInfo.CurrentCulture) },
             };
         }
 
@@ -76,8 +77,7 @@ namespace CarDetailsCatalog.Models.Abstracts
 
         public static double GetBestBetween(string property, double value1, double value2)
         {
-            var oper = GetBestForProperty(property);
-            if (oper == "Max")
+            if (GetBestForProperty(property) == "Max")
             {
                 return value1 > value2 ? value1 : value2;
             }

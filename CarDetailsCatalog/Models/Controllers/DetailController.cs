@@ -13,18 +13,8 @@ namespace CarDetailsCatalog.Models.Controllers
             _repository = repository;
         }
 
-        public static DetailController Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new DetailController(new DetailRepository(new AppDbContext()));
-                }
-
-                return _instance;
-            }
-        }
+        public static DetailController Instance =>
+            _instance ?? (_instance = new DetailController(new DetailRepository(new AppDbContext())));
 
         public IDetail FindByName(string name)
         {

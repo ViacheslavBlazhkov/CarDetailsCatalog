@@ -8,29 +8,14 @@ namespace CarDetailsCatalog.Models.Controllers
     {
         private static GearboxController _instance;
         private readonly GearboxRepository _repository;
-        private readonly DetailRepository _detailRepository;
 
-        public GearboxController(GearboxRepository repository, DetailRepository detailRepository)
+        public GearboxController(GearboxRepository repository)
         {
             _repository = repository;
-            _detailRepository = detailRepository;
         }
 
-        public static GearboxController Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new GearboxController(
-                        new GearboxRepository(new AppDbContext()),
-                        new DetailRepository(new AppDbContext())
-                    );
-                }
-
-                return _instance;
-            }
-        }
+        public static GearboxController Instance =>
+            _instance ?? (_instance = new GearboxController(new GearboxRepository(new AppDbContext())));
 
         public List<Gearbox> GetAll()
         {
