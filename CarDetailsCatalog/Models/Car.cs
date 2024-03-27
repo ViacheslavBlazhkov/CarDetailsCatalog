@@ -11,7 +11,6 @@ namespace CarDetailsCatalog.Models
         public int BrandId { get; set; }
         public string Model { get; set; }
         public int Year { get; set; }
-        public int CountryId { get; set; }
 
         public static string GetBrandTitleFor(Brand brand)
         {
@@ -23,18 +22,6 @@ namespace CarDetailsCatalog.Models
                 { Brand.Subaru, "Subaru" },
             };
             return titles[brand];
-        }
-
-        public static string GetCountryTitleFor(Country country)
-        {
-            var titles = new Dictionary<Country, string>()
-            {
-                { Country.France, "France" },
-                { Country.Germany, "Germany" },
-                { Country.Japan, "Japan" },
-                { Country.Usa, "Usa" },
-            };
-            return titles[country];
         }
 
         public static Image GetImageForBrand(Brand brand, int width = 95, int height = 95)

@@ -20,113 +20,97 @@ namespace CarDetailsCatalog.Seeders
                 {
                     BrandId = (int)Brand.Audi, 
                     Model = "A1", 
-                    Year = 2010, 
-                    CountryId = (int)Country.Germany
+                    Year = 2010
                 },
                 new Car
                 {
                     BrandId = (int)Brand.Audi, 
                     Model = "A3", 
-                    Year = 1996, 
-                    CountryId = (int)Country.Germany
+                    Year = 1996
                 },
                 new Car
                 {
                     BrandId = (int)Brand.Audi, 
                     Model = "A4", 
-                    Year = 1994, 
-                    CountryId = (int)Country.Germany
+                    Year = 1994
                 },
                 new Car
                 {
                     BrandId = (int)Brand.Audi, 
                     Model = "A5", 
-                    Year = 2007, 
-                    CountryId = (int)Country.Germany
+                    Year = 2007
                 },
                 new Car
                 {
                     BrandId = (int)Brand.Bmw, 
                     Model = "3 Series", 
-                    Year = 1975, 
-                    CountryId = (int)Country.Germany
+                    Year = 1975
                 },
                 new Car
                 {
                     BrandId = (int)Brand.Bmw, 
                     Model = "4 Series", 
-                    Year = 2014, 
-                    CountryId = (int)Country.Germany
+                    Year = 2014
                 },
                 new Car
                 {
                     BrandId = (int)Brand.Bmw, 
                     Model = "5 Series", 
-                    Year = 1972, 
-                    CountryId = (int)Country.Germany
+                    Year = 1972
                 },
                 new Car
                 {
                     BrandId = (int)Brand.Bmw, 
                     Model = "7 Series", 
-                    Year = 1977, 
-                    CountryId = (int)Country.Germany
+                    Year = 1977
                 },
                 new Car
                 {
                     BrandId = (int)Brand.Porsche, 
                     Model = "Boxster", 
-                    Year = 1996, 
-                    CountryId = (int)Country.Germany
+                    Year = 1996
                 },
                 new Car
                 {
                     BrandId = (int)Brand.Porsche, 
                     Model = "911", 
-                    Year = 1964, 
-                    CountryId = (int)Country.Germany
+                    Year = 1964
                 },
                 new Car
                 {
                     BrandId = (int)Brand.Porsche, 
                     Model = "Cayenne", 
-                    Year = 2002, 
-                    CountryId = (int)Country.Germany
+                    Year = 2002
                 },
                 new Car
                 {
                     BrandId = (int)Brand.Porsche, 
                     Model = "Macan", 
-                    Year = 2014, 
-                    CountryId = (int)Country.Germany
+                    Year = 2014
                 },
                 new Car
                 {
                     BrandId = (int)Brand.Subaru, 
                     Model = "BRZ", 
-                    Year = 2012, 
-                    CountryId = (int)Country.Japan
+                    Year = 2012
                 },
                 new Car
                 {
                     BrandId = (int)Brand.Subaru, 
                     Model = "Impreza", 
-                    Year = 1992, 
-                    CountryId = (int)Country.Japan
+                    Year = 1992
                 },
                 new Car
                 {
                     BrandId = (int)Brand.Subaru, 
                     Model = "Legacy", 
-                    Year = 1989, 
-                    CountryId = (int)Country.Japan
+                    Year = 1989
                 },
                 new Car
                 {
                     BrandId = (int)Brand.Subaru, 
                     Model = "Outback", 
-                    Year = 1994, 
-                    CountryId = (int)Country.Japan
+                    Year = 1994
                 },
             };
 
