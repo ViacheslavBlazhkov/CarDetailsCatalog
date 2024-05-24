@@ -31,6 +31,7 @@
         {
             this.contentControl = new System.Windows.Forms.Control();
             this.toPrevMenuBtn = new System.Windows.Forms.Button();
+            this.adminPanelBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // contentControl
@@ -53,17 +54,30 @@
             this.toPrevMenuBtn.Visible = false;
             this.toPrevMenuBtn.Click += new System.EventHandler(this.toPrevMenuBtn_Click);
             // 
+            // adminPanelBtn
+            // 
+            this.adminPanelBtn.Location = new System.Drawing.Point(672, 12);
+            this.adminPanelBtn.Name = "adminPanelBtn";
+            this.adminPanelBtn.Size = new System.Drawing.Size(116, 56);
+            this.adminPanelBtn.TabIndex = 2;
+            this.adminPanelBtn.Text = "Admin Panel";
+            this.adminPanelBtn.UseVisualStyleBackColor = true;
+            this.adminPanelBtn.Click += new System.EventHandler(this.adminPanelBtn_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.adminPanelBtn);
             this.Controls.Add(this.toPrevMenuBtn);
             this.Controls.Add(this.contentControl);
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.Button adminPanelBtn;
 
         private System.Windows.Forms.Button toPrevMenuBtn;
 

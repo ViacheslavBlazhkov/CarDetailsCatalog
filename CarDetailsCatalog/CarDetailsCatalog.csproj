@@ -59,7 +59,9 @@
         <Compile Include="Constants\CarVariables.cs" />
         <Compile Include="Constants\DetailVariables.cs" />
         <Compile Include="Constants\Menu.cs" />
-        <Compile Include="ContentController.cs" />
+        <Compile Include="Exceptions\CarAlreadyExistsException.cs" />
+        <Compile Include="Exceptions\DetailAlreadyExistsException.cs" />
+        <Compile Include="Exceptions\UnknownMenuException.cs" />
         <Compile Include="MainForm.cs">
             <SubType>Form</SubType>
         </Compile>
@@ -85,6 +87,13 @@
         <Compile Include="Seeders\CarSeeder.cs" />
         <Compile Include="Seeders\Details\EngineSeeder.cs" />
         <Compile Include="Seeders\Details\GearboxSeeder.cs" />
+        <Compile Include="VisualComponents\AdminPanelForm.cs">
+          <SubType>Form</SubType>
+        </Compile>
+        <Compile Include="VisualComponents\AdminPanelForm.Designer.cs">
+          <DependentUpon>AdminPanelForm.cs</DependentUpon>
+        </Compile>
+        <Compile Include="VisualComponents\ContentController.cs" />
         <EmbeddedResource Include="MainForm.resx">
           <DependentUpon>MainForm.cs</DependentUpon>
         </EmbeddedResource>
@@ -97,6 +106,9 @@
             <AutoGen>True</AutoGen>
             <DependentUpon>Resources.resx</DependentUpon>
         </Compile>
+        <EmbeddedResource Include="VisualComponents\AdminPanelForm.resx">
+          <DependentUpon>AdminPanelForm.cs</DependentUpon>
+        </EmbeddedResource>
         <None Include="packages.config" />
         <None Include="Properties\Settings.settings">
             <Generator>SettingsSingleFileGenerator</Generator>
@@ -122,6 +134,9 @@
       <Content Include="Resources\Images\DetailTypes\gearbox.png" />
       <Content Include="Resources\Images\DetailTypes\tires.png" />
       <Content Include="Resources\Images\DetailTypes\engine.png" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Forms\" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

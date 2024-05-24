@@ -10,7 +10,7 @@ using CarDetailsCatalog.Models.Abstracts;
 using CarDetailsCatalog.Models.Controllers;
 using Menu = CarDetailsCatalog.Constants.Menu;
 
-namespace CarDetailsCatalog
+namespace CarDetailsCatalog.VisualComponents
 {
     public class ContentController
     {
@@ -49,7 +49,7 @@ namespace CarDetailsCatalog
         public Control GetModelsView()
         {
             var models = CarController.Instance.GetModelsByBrandId((int)ChosenBrand);
-            var titles = models.Select(car => car.Model).ToArray();
+            var titles = models.OrderBy(car => car.Model).Select(car => car.Model).ToArray();
             var control = GetControlWithButtons(titles, MainForm.GetForm().ChangeControlToDetailTypesView);
             return control;
         }
@@ -186,7 +186,8 @@ namespace CarDetailsCatalog
             return control;
         }
 
-        private Control GetControlForDetail(IDetail detail, int width, int height, Dictionary<string, Color> paramsWithColors)
+        private Control GetControlForDetail(IDetail detail, int width, int height,
+            Dictionary<string, Color> paramsWithColors)
         {
             var distanceY = 100;
             var control = new Control

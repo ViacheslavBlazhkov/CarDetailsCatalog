@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Windows.Forms;
 using CarDetailsCatalog.Constants;
+using CarDetailsCatalog.Exceptions;
 using CarDetailsCatalog.Models.Abstracts;
 using CarDetailsCatalog.Models.Controllers;
 using CarDetailsCatalog.Seeders;
 using CarDetailsCatalog.Seeders.Details;
+using CarDetailsCatalog.VisualComponents;
 
 namespace CarDetailsCatalog
 {
-    public partial class MainForm : Form
+    public partial class MainForm : Form // TODO: add Search | optimize window resizing | scroll items | admin panel
     {
         private static MainForm _form;
 
@@ -128,7 +130,15 @@ namespace CarDetailsCatalog
                 case Constants.Menu.Comparing:
                     ChangeControlToDetailsView(ContentController.GetInstance().ChosenDetailType);
                     break;
+                default:
+                    throw new UnknownMenuException();
             }
+        }
+
+        private void adminPanelBtn_Click(object sender, EventArgs e)
+        {
+            AdminPanelForm adminPanelForm = new AdminPanelForm();
+            adminPanelForm.Show();
         }
     }
 }
