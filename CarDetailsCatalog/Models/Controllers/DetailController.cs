@@ -16,9 +16,6 @@ namespace CarDetailsCatalog.Models.Controllers
         public static DetailController Instance =>
             _instance ?? (_instance = new DetailController(new DetailRepository(new AppDbContext())));
 
-        public IDetail FindByName(string name)
-        {
-            return _repository.FindByName(name);
-        }
+        public IDetail FindByName(string name) => _repository.FindByName(name);
     }
 }

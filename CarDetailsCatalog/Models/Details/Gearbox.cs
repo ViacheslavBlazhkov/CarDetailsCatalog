@@ -12,8 +12,8 @@ namespace CarDetailsCatalog.Models.Details
         public override Dictionary<string, string> GetCharacteristics()
         {
             var dict = base.GetCharacteristics();
-            dict["Кількість передач"] = Gears.ToString();
-            dict["Тип к/п"] = GetGearboxTypeTitleFor(Type);
+            dict["Gears"] = Gears.ToString();
+            dict["Type"] = GetGearboxTypeTitleFor(Type);
             return dict;
         }
 
@@ -21,8 +21,8 @@ namespace CarDetailsCatalog.Models.Details
         {
             var titles = new Dictionary<GearboxType, string>()
             {
-                { GearboxType.Manual, "Механіка" },
-                { GearboxType.Automatic, "Автомат" },
+                { GearboxType.Manual, "Manual" },
+                { GearboxType.Automatic, "Automatic" },
             };
             return titles[id];
         }

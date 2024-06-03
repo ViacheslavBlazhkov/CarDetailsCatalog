@@ -17,14 +17,10 @@ namespace CarDetailsCatalog.Models.Controllers
         public static GearboxController Instance =>
             _instance ?? (_instance = new GearboxController(new GearboxRepository(new AppDbContext())));
 
-        public List<Gearbox> GetAll()
-        {
-            return Instance._repository.GetAll();
-        }
+        public List<Gearbox> GetAll() => Instance._repository.GetAll();
 
-        public List<Gearbox> GetAllByCarId(int carId)
-        {
-            return Instance._repository.GetAllByCarId(carId);
-        }
+        public List<Gearbox> GetAllByCarId(int carId) => Instance._repository.GetAllByCarId(carId);
+
+        public List<Gearbox> SearchByTitle(string title) => Instance._repository.SearchByTitle(title);
     }
 }

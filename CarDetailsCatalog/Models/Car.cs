@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Drawing;
+using System.IO;
 using CarDetailsCatalog.Constants;
 
 namespace CarDetailsCatalog.Models
@@ -26,8 +27,7 @@ namespace CarDetailsCatalog.Models
 
         public static Image GetImageForBrand(Brand brand, int width = 95, int height = 95)
         {
-            var imagePath =
-                "C:\\QWERTY\\Projects\\C#\\AP\\CarDetailsCatalog\\CarDetailsCatalog\\Resources\\Images\\Brands";
+            var imagePath = Path.Combine(Helper.GetRootPath(), "CarDetailsCatalog\\Resources\\Images\\Brands"); 
             switch (brand)
             {
                 case Brand.Audi:

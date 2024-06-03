@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using CarDetailsCatalog.Constants;
 
@@ -21,21 +22,15 @@ namespace CarDetailsCatalog.Models.Abstracts
         {
             return new Dictionary<string, string>
             {
-                { "Назва", Name },
-                { "Виробник", GetProducerTitleFor((Producer)ProducerId) },
-                { "Ціна", Price.ToString(CultureInfo.CurrentCulture) },
+                { "Title", Name },
+                { "Producer", GetProducerTitleFor((Producer)ProducerId) },
+                { "Price", Price.ToString(CultureInfo.CurrentCulture) },
             };
         }
 
-        public static int[] GetSuitableCarIdsArrayByString(string ids)
-        {
-            return Array.ConvertAll(ids.Split('|'), int.Parse);
-        }
+        public static int[] GetSuitableCarIdsArrayByString(string ids) => Array.ConvertAll(ids.Split('|'), int.Parse);
 
-        public static string GetSuitableCarIdsStringByArray(int[] ids)
-        {
-            return string.Join("|", ids);
-        }
+        public static string GetSuitableCarIdsStringByArray(int[] ids) => string.Join("|", ids);
 
         public static Dictionary<string, Color>[] GetParamsWithColors(Dictionary<string, string> params1,
             Dictionary<string, string> params2)
@@ -89,11 +84,11 @@ namespace CarDetailsCatalog.Models.Abstracts
         {
             var dict = new Dictionary<string, string>
             {
-                { "Ціна", "Min" },
-                { "Кінські сили", "Max" },
-                { "Крутний момент", "Max" },
-                { "Розхід палива", "Min" },
-                { "Кількість передач", "Max" },
+                { "Price", "Min" },
+                { "Horse Power", "Max" },
+                { "Torque", "Max" },
+                { "Fuel Consumption", "Min" },
+                { "Gears", "Max" },
             };
             return dict.FirstOrDefault(p => p.Key == property).Value;
         }
@@ -114,8 +109,7 @@ namespace CarDetailsCatalog.Models.Abstracts
 
         public static Image GetImageForDetailType(DetailType detailType, int width = 95, int height = 95)
         {
-            var imagePath =
-                "C:\\QWERTY\\Projects\\C#\\AP\\CarDetailsCatalog\\CarDetailsCatalog\\Resources\\Images\\DetailTypes";
+            var imagePath = Path.Combine(Helper.GetRootPath(), "CarDetailsCatalog\\Resources\\Images\\DetailTypes");
             switch (detailType)
             {
                 case DetailType.Brakes:

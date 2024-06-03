@@ -16,14 +16,11 @@ namespace CarDetailsCatalog.Models.Controllers.Repositories
             _dbSet = context.Set<Engine>();
         }
 
-        public List<Engine> GetAll()
-        {
-            return _dbSet.ToList();
-        }
+        public List<Engine> GetAll() => _dbSet.ToList();
 
-        public List<Engine> GetAllByCarId(int carId)
-        {
-            return _dbSet.Where(e => e.SuitableCarIds != null && e.SuitableCarIds.Contains(carId.ToString())).ToList();
-        }
+        public List<Engine> GetAllByCarId(int carId) => _dbSet
+            .Where(e => e.SuitableCarIds != null && e.SuitableCarIds.Contains(carId.ToString())).ToList();
+
+        public List<Engine> SearchByTitle(string title) => _dbSet.Where(e => e.Name.Contains(title)).ToList();
     }
 }

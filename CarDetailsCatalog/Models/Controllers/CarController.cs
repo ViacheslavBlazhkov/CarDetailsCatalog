@@ -17,19 +17,11 @@ namespace CarDetailsCatalog.Models.Controllers
         public static CarController Instance =>
             _instance ?? (_instance = new CarController(new CarRepository(new AppDbContext())));
 
-        public Car FindByBrandAndModel(Brand brand, string model)
-        {
-            return Instance._repository.FindByBrandAndModel(brand, model);
-        }
+        public Car FindByBrandAndModel(Brand brand, string model) =>
+            Instance._repository.FindByBrandAndModel(brand, model);
 
-        public List<Car> GetAll()
-        {
-            return Instance._repository.GetAll();
-        }
+        public List<Car> GetAll() => Instance._repository.GetAll();
 
-        public List<Car> GetModelsByBrandId(int brandId)
-        {
-            return Instance._repository.GetModelsByBrandId(brandId);
-        }
+        public List<Car> GetModelsByBrandId(int brandId) => Instance._repository.GetModelsByBrandId(brandId);
     }
 }

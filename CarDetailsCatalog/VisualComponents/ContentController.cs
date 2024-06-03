@@ -24,20 +24,13 @@ namespace CarDetailsCatalog.VisualComponents
 
         private static ContentController _instance;
 
-        private ContentController()
-        {
-        }
-
-        public static ContentController GetInstance()
-        {
-            return _instance ?? (_instance = new ContentController());
-        }
+        public static ContentController GetInstance() => _instance ?? (_instance = new ContentController());
 
         public Control GetBrandsView()
         {
             var brands = Enum.GetNames(typeof(Brand));
             var control = GetControlWithButtons(brands, MainForm.GetForm().ChangeControlToModelsView);
-            foreach (Button btn in control.Controls)
+            foreach (Button btn in control.Controls.OfType<Button>())
             {
                 Brand brand = (Brand)Enum.Parse(typeof(Brand), btn.Text);
                 btn.Image = Car.GetImageForBrand(brand);
@@ -58,7 +51,7 @@ namespace CarDetailsCatalog.VisualComponents
         {
             var detailTypes = Enum.GetNames(typeof(DetailType));
             var control = GetControlWithButtons(detailTypes, MainForm.GetForm().ChangeControlToDetailsView);
-            foreach (Button btn in control.Controls)
+            foreach (Button btn in control.Controls.OfType<Button>())
             {
                 DetailType detailType = (DetailType)Enum.Parse(typeof(DetailType), btn.Text);
                 btn.Image = ADetail.GetImageForDetailType(detailType);
@@ -93,7 +86,36 @@ namespace CarDetailsCatalog.VisualComponents
 
             var titles = details.Select(d => d.Name).ToArray();
             var control = GetControlWithButtons(titles, MainForm.GetForm().ChangeControlToDetailInfoView);
-            foreach (Button btn in control.Controls)
+            foreach (Button btn in control.Controls.OfType<Button>())
+            {
+                var addBtn = new Button
+                {
+                    BackColor = Color.DarkSeaGreen,
+                    Location = new Point(10, btn.Height - 50),
+                    Text = @"+",
+                    Size = new Size(40, 40),
+                    Tag = btn.Text
+                };
+                addBtn.Click += AddDetailToCompare;
+                btn.Controls.Add(addBtn);
+            }
+
+            var comparePanel = GetCompareControlForDetailsView();
+            control.Controls.Add(comparePanel);
+            comparePanel.Location = new Point(0, control.Height / 2);
+            return control;
+        }
+
+        public Control GetFoundDetailsView(string title)
+        {
+            _detailsToCompare.Clear();
+            List<ADetail> details = new List<ADetail>();
+            details.AddRange(EngineController.Instance.SearchByTitle(title).ToList<ADetail>());
+            details.AddRange(GearboxController.Instance.SearchByTitle(title).ToList<ADetail>());
+
+            var titles = details.Select(d => d.Name).ToArray();
+            var control = GetControlWithButtons(titles, MainForm.GetForm().ChangeControlToDetailInfoView);
+            foreach (Button btn in control.Controls.OfType<Button>())
             {
                 var addBtn = new Button
                 {
@@ -162,7 +184,7 @@ namespace CarDetailsCatalog.VisualComponents
             {
                 AccessibleName = @"compareBtn",
                 BackColor = Color.DarkSeaGreen,
-                Text = @"Порівняти",
+                Text = @"Compare",
                 Location = new Point(control.Width - 150, 0),
                 Size = new Size(100, 40),
                 Visible = false
@@ -196,10 +218,10 @@ namespace CarDetailsCatalog.VisualComponents
                 Width = width,
             };
             var detailCharacteristics = detail.GetCharacteristics();
-            var header = GetDetailInfoHeader(detailCharacteristics["Назва"], control.Width,
+            var header = GetDetailInfoHeader(detailCharacteristics["Title"], control.Width,
                 ContentAlignment.MiddleLeft);
             control.Controls.Add(header);
-            foreach (var characteristic in detailCharacteristics.Where(c => c.Key != "Назва"))
+            foreach (var characteristic in detailCharacteristics.Where(c => c.Key != "Title"))
             {
                 var color = paramsWithColors.FirstOrDefault(p => p.Key == characteristic.Key).Value;
                 control.Controls.Add(new Label
@@ -251,10 +273,7 @@ namespace CarDetailsCatalog.VisualComponents
             compareBtn.Visible = false;
         }
 
-        public Control GetDetailInfoView()
-        {
-            return GetControlWithDetailInfo(ChosenDetail);
-        }
+        public Control GetDetailInfoView() => GetControlWithDetailInfo(ChosenDetail);
 
         private Control GetControlWithButtons(string[] titles, EventHandler method)
         {
@@ -289,8 +308,8 @@ namespace CarDetailsCatalog.VisualComponents
             Dictionary<string, string> detailCharacteristics = detail.GetCharacteristics();
             Image defaultImage = ADetail.GetImageForDetailType(ChosenDetailType, 200, 200);
 
-            control.Controls.Add(GetDetailInfoHeader(detailCharacteristics["Назва"]));
-            foreach (var characteristic in detailCharacteristics.Where(c => c.Key != "Назва"))
+            control.Controls.Add(GetDetailInfoHeader(detailCharacteristics["Title"]));
+            foreach (var characteristic in detailCharacteristics.Where(c => c.Key != "Title"))
             {
                 control.Controls.Add(new Label
                 {

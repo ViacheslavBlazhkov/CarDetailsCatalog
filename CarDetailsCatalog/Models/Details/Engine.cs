@@ -13,9 +13,9 @@ namespace CarDetailsCatalog.Models.Details
         public override Dictionary<string, string> GetCharacteristics()
         {
             var dict = base.GetCharacteristics();
-            dict["Кінські сили"] = HorsePower.ToString();
-            dict["Крутний момент"] = Torque.ToString();
-            dict["Розхід палива"] = FuelConsumption.ToString(CultureInfo.CurrentCulture);
+            dict["Horse Power"] = HorsePower.ToString();
+            dict["Torque"] = Torque.ToString();
+            dict["Fuel Consumption"] = FuelConsumption.ToString(CultureInfo.CurrentCulture);
             return dict;
         }
     }

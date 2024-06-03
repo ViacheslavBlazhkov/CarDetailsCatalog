@@ -17,14 +17,10 @@ namespace CarDetailsCatalog.Models.Controllers
         public static EngineController Instance =>
             _instance ?? (_instance = new EngineController(new EngineRepository(new AppDbContext())));
 
-        public List<Engine> GetAll()
-        {
-            return Instance._repository.GetAll();
-        }
+        public List<Engine> GetAll() => Instance._repository.GetAll();
 
-        public List<Engine> GetAllByCarId(int carId)
-        {
-            return Instance._repository.GetAllByCarId(carId);
-        }
+        public List<Engine> GetAllByCarId(int carId) => Instance._repository.GetAllByCarId(carId);
+
+        public List<Engine> SearchByTitle(string title) => Instance._repository.SearchByTitle(title);
     }
 }

@@ -16,19 +16,11 @@ namespace CarDetailsCatalog.Models.Controllers.Repositories
             _dbSet = context.Set<Car>();
         }
 
-        public Car FindByBrandAndModel(Brand brand, string model)
-        {
-            return _dbSet.FirstOrDefault(car => car.BrandId == (int)brand && car.Model == model);
-        }
+        public Car FindByBrandAndModel(Brand brand, string model) =>
+            _dbSet.FirstOrDefault(car => car.BrandId == (int)brand && car.Model == model);
 
-        public List<Car> GetAll()
-        {
-            return _dbSet.ToList();
-        }
+        public List<Car> GetAll() => _dbSet.ToList();
 
-        public List<Car> GetModelsByBrandId(int brandId)
-        {
-            return _dbSet.Where(car => car.BrandId == brandId).ToList();
-        }
+        public List<Car> GetModelsByBrandId(int brandId) => _dbSet.Where(car => car.BrandId == brandId).ToList();
     }
 }

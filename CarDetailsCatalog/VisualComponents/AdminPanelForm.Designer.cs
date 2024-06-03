@@ -35,22 +35,22 @@ namespace CarDetailsCatalog.VisualComponents
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.addNewCarTab = new System.Windows.Forms.TabPage();
             this.addCarButton = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
+            this.yearLabel = new System.Windows.Forms.Label();
             this.yearInput = new System.Windows.Forms.NumericUpDown();
-            this.label3 = new System.Windows.Forms.Label();
+            this.modelLabel = new System.Windows.Forms.Label();
             this.modelTextBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.brandLabel = new System.Windows.Forms.Label();
             this.brandDropdown = new System.Windows.Forms.ComboBox();
             this.addNewDetailTab = new System.Windows.Forms.TabPage();
-            this.addNewDetailBtn = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.nameInput = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.detailTypeDropdown = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.priceInput = new System.Windows.Forms.NumericUpDown();
-            this.label7 = new System.Windows.Forms.Label();
+            this.producerLabel = new System.Windows.Forms.Label();
             this.producerDropdown = new System.Windows.Forms.ComboBox();
+            this.addNewDetailBtn = new System.Windows.Forms.Button();
+            this.priceLabel = new System.Windows.Forms.Label();
+            this.priceInput = new System.Windows.Forms.NumericUpDown();
+            this.titleLabel = new System.Windows.Forms.Label();
+            this.nameInput = new System.Windows.Forms.TextBox();
+            this.typeLabel = new System.Windows.Forms.Label();
+            this.detailTypeDropdown = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.addNewCarTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.yearInput)).BeginInit();
@@ -78,11 +78,11 @@ namespace CarDetailsCatalog.VisualComponents
             // addNewCarTab
             // 
             this.addNewCarTab.Controls.Add(this.addCarButton);
-            this.addNewCarTab.Controls.Add(this.label4);
+            this.addNewCarTab.Controls.Add(this.yearLabel);
             this.addNewCarTab.Controls.Add(this.yearInput);
-            this.addNewCarTab.Controls.Add(this.label3);
+            this.addNewCarTab.Controls.Add(this.modelLabel);
             this.addNewCarTab.Controls.Add(this.modelTextBox);
-            this.addNewCarTab.Controls.Add(this.label1);
+            this.addNewCarTab.Controls.Add(this.brandLabel);
             this.addNewCarTab.Controls.Add(this.brandDropdown);
             this.addNewCarTab.Location = new System.Drawing.Point(4, 25);
             this.addNewCarTab.Name = "addNewCarTab";
@@ -99,17 +99,17 @@ namespace CarDetailsCatalog.VisualComponents
             this.addCarButton.Name = "addCarButton";
             this.addCarButton.Size = new System.Drawing.Size(191, 53);
             this.addCarButton.TabIndex = 8;
-            this.addCarButton.Text = "Додати";
+            this.addCarButton.Text = "Add";
             this.addCarButton.UseVisualStyleBackColor = true;
             this.addCarButton.Click += new System.EventHandler(this.addCarButton_Click);
             // 
-            // label4
+            // yearLabel
             // 
-            this.label4.Location = new System.Drawing.Point(23, 215);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(100, 23);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Рік:";
+            this.yearLabel.Location = new System.Drawing.Point(23, 215);
+            this.yearLabel.Name = "yearLabel";
+            this.yearLabel.Size = new System.Drawing.Size(100, 23);
+            this.yearLabel.TabIndex = 7;
+            this.yearLabel.Text = "Year:";
             // 
             // yearInput
             // 
@@ -122,13 +122,13 @@ namespace CarDetailsCatalog.VisualComponents
             this.yearInput.TabIndex = 6;
             this.yearInput.Value = new decimal(new int[] { 2000, 0, 0, 0 });
             // 
-            // label3
+            // modelLabel
             // 
-            this.label3.Location = new System.Drawing.Point(23, 127);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(100, 23);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Модель:";
+            this.modelLabel.Location = new System.Drawing.Point(23, 127);
+            this.modelLabel.Name = "modelLabel";
+            this.modelLabel.Size = new System.Drawing.Size(100, 23);
+            this.modelLabel.TabIndex = 5;
+            this.modelLabel.Text = "Model:";
             // 
             // modelTextBox
             // 
@@ -138,13 +138,13 @@ namespace CarDetailsCatalog.VisualComponents
             this.modelTextBox.Size = new System.Drawing.Size(276, 45);
             this.modelTextBox.TabIndex = 4;
             // 
-            // label1
+            // brandLabel
             // 
-            this.label1.Location = new System.Drawing.Point(23, 44);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 23);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Бренд:";
+            this.brandLabel.Location = new System.Drawing.Point(23, 44);
+            this.brandLabel.Name = "brandLabel";
+            this.brandLabel.Size = new System.Drawing.Size(100, 23);
+            this.brandLabel.TabIndex = 2;
+            this.brandLabel.Text = "Brand:";
             // 
             // brandDropdown
             // 
@@ -159,14 +159,14 @@ namespace CarDetailsCatalog.VisualComponents
             // 
             // addNewDetailTab
             // 
-            this.addNewDetailTab.Controls.Add(this.label7);
+            this.addNewDetailTab.Controls.Add(this.producerLabel);
             this.addNewDetailTab.Controls.Add(this.producerDropdown);
             this.addNewDetailTab.Controls.Add(this.addNewDetailBtn);
-            this.addNewDetailTab.Controls.Add(this.label2);
+            this.addNewDetailTab.Controls.Add(this.priceLabel);
             this.addNewDetailTab.Controls.Add(this.priceInput);
-            this.addNewDetailTab.Controls.Add(this.label5);
+            this.addNewDetailTab.Controls.Add(this.titleLabel);
             this.addNewDetailTab.Controls.Add(this.nameInput);
-            this.addNewDetailTab.Controls.Add(this.label6);
+            this.addNewDetailTab.Controls.Add(this.typeLabel);
             this.addNewDetailTab.Controls.Add(this.detailTypeDropdown);
             this.addNewDetailTab.Location = new System.Drawing.Point(4, 25);
             this.addNewDetailTab.Name = "addNewDetailTab";
@@ -176,77 +176,13 @@ namespace CarDetailsCatalog.VisualComponents
             this.addNewDetailTab.Text = "Add new Detail";
             this.addNewDetailTab.UseVisualStyleBackColor = true;
             // 
-            // addNewDetailBtn
+            // producerLabel
             // 
-            this.addNewDetailBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.addNewDetailBtn.Location = new System.Drawing.Point(8, 360);
-            this.addNewDetailBtn.Name = "addNewDetailBtn";
-            this.addNewDetailBtn.Size = new System.Drawing.Size(191, 53);
-            this.addNewDetailBtn.TabIndex = 15;
-            this.addNewDetailBtn.Text = "Додати";
-            this.addNewDetailBtn.UseVisualStyleBackColor = true;
-            this.addNewDetailBtn.Click += new System.EventHandler(this.addNewDetailBtn_Click);
-            // 
-            // label5
-            // 
-            this.label5.Location = new System.Drawing.Point(8, 95);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(100, 23);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "Назва:";
-            // 
-            // nameInput
-            // 
-            this.nameInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nameInput.Location = new System.Drawing.Point(8, 121);
-            this.nameInput.Name = "nameInput";
-            this.nameInput.Size = new System.Drawing.Size(276, 45);
-            this.nameInput.TabIndex = 11;
-            // 
-            // label6
-            // 
-            this.label6.Location = new System.Drawing.Point(8, 12);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(100, 23);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Тип деталі:";
-            // 
-            // detailTypeDropdown
-            // 
-            this.detailTypeDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.detailTypeDropdown.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.detailTypeDropdown.FormattingEnabled = true;
-            this.detailTypeDropdown.Location = new System.Drawing.Point(8, 38);
-            this.detailTypeDropdown.Name = "detailTypeDropdown";
-            this.detailTypeDropdown.Size = new System.Drawing.Size(276, 46);
-            this.detailTypeDropdown.Sorted = true;
-            this.detailTypeDropdown.TabIndex = 9;
-            // 
-            // label2
-            // 
-            this.label2.Location = new System.Drawing.Point(8, 271);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 23);
-            this.label2.TabIndex = 14;
-            this.label2.Text = "Ціна:";
-            // 
-            // priceInput
-            // 
-            this.priceInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.priceInput.Location = new System.Drawing.Point(8, 297);
-            this.priceInput.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
-            this.priceInput.Name = "priceInput";
-            this.priceInput.Size = new System.Drawing.Size(276, 45);
-            this.priceInput.TabIndex = 13;
-            this.priceInput.Value = new decimal(new int[] { 2000, 0, 0, 0 });
-            // 
-            // label7
-            // 
-            this.label7.Location = new System.Drawing.Point(8, 183);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(100, 23);
-            this.label7.TabIndex = 17;
-            this.label7.Text = "Виробник:";
+            this.producerLabel.Location = new System.Drawing.Point(8, 183);
+            this.producerLabel.Name = "producerLabel";
+            this.producerLabel.Size = new System.Drawing.Size(100, 23);
+            this.producerLabel.TabIndex = 17;
+            this.producerLabel.Text = "Producer:";
             // 
             // producerDropdown
             // 
@@ -258,6 +194,70 @@ namespace CarDetailsCatalog.VisualComponents
             this.producerDropdown.Size = new System.Drawing.Size(276, 46);
             this.producerDropdown.Sorted = true;
             this.producerDropdown.TabIndex = 16;
+            // 
+            // addNewDetailBtn
+            // 
+            this.addNewDetailBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.addNewDetailBtn.Location = new System.Drawing.Point(8, 360);
+            this.addNewDetailBtn.Name = "addNewDetailBtn";
+            this.addNewDetailBtn.Size = new System.Drawing.Size(191, 53);
+            this.addNewDetailBtn.TabIndex = 15;
+            this.addNewDetailBtn.Text = "Add";
+            this.addNewDetailBtn.UseVisualStyleBackColor = true;
+            this.addNewDetailBtn.Click += new System.EventHandler(this.addNewDetailBtn_Click);
+            // 
+            // priceLabel
+            // 
+            this.priceLabel.Location = new System.Drawing.Point(8, 271);
+            this.priceLabel.Name = "priceLabel";
+            this.priceLabel.Size = new System.Drawing.Size(100, 23);
+            this.priceLabel.TabIndex = 14;
+            this.priceLabel.Text = "Price:";
+            // 
+            // priceInput
+            // 
+            this.priceInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.priceInput.Location = new System.Drawing.Point(8, 297);
+            this.priceInput.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
+            this.priceInput.Name = "priceInput";
+            this.priceInput.Size = new System.Drawing.Size(276, 45);
+            this.priceInput.TabIndex = 13;
+            this.priceInput.Value = new decimal(new int[] { 2000, 0, 0, 0 });
+            // 
+            // titleLabel
+            // 
+            this.titleLabel.Location = new System.Drawing.Point(8, 95);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(100, 23);
+            this.titleLabel.TabIndex = 12;
+            this.titleLabel.Text = "Title:";
+            // 
+            // nameInput
+            // 
+            this.nameInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nameInput.Location = new System.Drawing.Point(8, 121);
+            this.nameInput.Name = "nameInput";
+            this.nameInput.Size = new System.Drawing.Size(276, 45);
+            this.nameInput.TabIndex = 11;
+            // 
+            // typeLabel
+            // 
+            this.typeLabel.Location = new System.Drawing.Point(8, 12);
+            this.typeLabel.Name = "typeLabel";
+            this.typeLabel.Size = new System.Drawing.Size(100, 23);
+            this.typeLabel.TabIndex = 10;
+            this.typeLabel.Text = "Type:";
+            // 
+            // detailTypeDropdown
+            // 
+            this.detailTypeDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.detailTypeDropdown.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.detailTypeDropdown.FormattingEnabled = true;
+            this.detailTypeDropdown.Location = new System.Drawing.Point(8, 38);
+            this.detailTypeDropdown.Name = "detailTypeDropdown";
+            this.detailTypeDropdown.Size = new System.Drawing.Size(276, 46);
+            this.detailTypeDropdown.Sorted = true;
+            this.detailTypeDropdown.TabIndex = 9;
             // 
             // AdminPanelForm
             // 
@@ -277,26 +277,26 @@ namespace CarDetailsCatalog.VisualComponents
             this.ResumeLayout(false);
         }
 
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label producerLabel;
         private System.Windows.Forms.ComboBox producerDropdown;
 
         private System.Windows.Forms.Button addNewDetailBtn;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label priceLabel;
         private System.Windows.Forms.NumericUpDown priceInput;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.TextBox nameInput;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label typeLabel;
         private System.Windows.Forms.ComboBox detailTypeDropdown;
 
         private System.Windows.Forms.Button addCarButton;
 
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label yearLabel;
 
         private System.Windows.Forms.NumericUpDown yearInput;
 
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label modelLabel;
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label brandLabel;
         private System.Windows.Forms.TextBox modelTextBox;
 
         private System.Windows.Forms.ComboBox brandDropdown;

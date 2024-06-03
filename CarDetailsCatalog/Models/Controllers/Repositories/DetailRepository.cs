@@ -15,9 +15,6 @@ namespace CarDetailsCatalog.Models.Controllers.Repositories
             _dbSet = context.Set<ADetail>();
         }
 
-        public IDetail FindByName(string name)
-        {
-            return _dbSet.FirstOrDefault(d => d.Name == name);
-        }
+        public IDetail FindByName(string name) => _dbSet.FirstOrDefault(d => d.Name == name);
     }
 }

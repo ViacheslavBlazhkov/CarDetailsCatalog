@@ -10,7 +10,7 @@ using CarDetailsCatalog.VisualComponents;
 
 namespace CarDetailsCatalog
 {
-    public partial class MainForm : Form // TODO: add Search | optimize window resizing | scroll items | admin panel
+    public partial class MainForm : Form // TODO: scroll form
     {
         private static MainForm _form;
 
@@ -20,6 +20,7 @@ namespace CarDetailsCatalog
             InitializeComponent();
             using (var context = new AppDbContext())
             {
+                context.Database.Initialize(false);
                 context.Database.Delete();
                 context.Database.CreateIfNotExists();
                 new CarSeeder(context).Seed();
@@ -91,6 +92,14 @@ namespace CarDetailsCatalog
             ContentController.GetInstance().CurrentMenu = Constants.Menu.Details;
         }
 
+        public void ChangeControlToFoundDetailsView(string title)
+        {
+            toPrevMenuBtn.Show();
+            contentControl.Controls.Clear();
+            contentControl.Controls.Add(ContentController.GetInstance().GetFoundDetailsView(title));
+            ContentController.GetInstance().CurrentMenu = Constants.Menu.Search;
+        }
+
         public void ChangeControlToDetailInfoView(object sender, EventArgs e)
         {
             var detailText = ((Button)sender).Text;
@@ -113,6 +122,11 @@ namespace CarDetailsCatalog
             switch (ContentController.GetInstance().CurrentMenu)
             {
                 case Constants.Menu.Brands:
+                    break;
+                case Constants.Menu.Search:
+                    findInput.Clear();
+                    toPrevMenuBtn.Hide();
+                    ChangeControlToBrandsView();
                     break;
                 case Constants.Menu.Models:
                     toPrevMenuBtn.Hide();
@@ -139,6 +153,18 @@ namespace CarDetailsCatalog
         {
             AdminPanelForm adminPanelForm = new AdminPanelForm();
             adminPanelForm.Show();
+        }
+
+        private void findButton_Click(object sender, EventArgs e)
+        {
+            if (findInput.Text != String.Empty)
+            {
+                ChangeControlToFoundDetailsView(findInput.Text);
+            }
+            else
+            {
+                MessageBox.Show("Enter some text, please", "Empty input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

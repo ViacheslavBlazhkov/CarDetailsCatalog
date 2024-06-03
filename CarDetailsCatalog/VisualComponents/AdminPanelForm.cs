@@ -40,11 +40,11 @@ namespace CarDetailsCatalog.VisualComponents
             }
             catch (CarAlreadyExistsException ex)
             {
-                MessageBox.Show(ex.Message, @"Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void addNewDetailBtn_Click(object sender, EventArgs e)
+        private void addNewDetailBtn_Click(object sender, EventArgs e) // TODO: realize this
         {
             try
             {

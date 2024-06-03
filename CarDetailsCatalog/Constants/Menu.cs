@@ -7,6 +7,7 @@
         DetailTypes,
         Details,
         DetailInfo,
-        Comparing
+        Comparing,
+        Search
     }
 }
