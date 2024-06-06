@@ -4,13 +4,11 @@ using CarDetailsCatalog.Constants;
 using CarDetailsCatalog.Exceptions;
 using CarDetailsCatalog.Models.Abstracts;
 using CarDetailsCatalog.Models.Controllers;
-using CarDetailsCatalog.Seeders;
-using CarDetailsCatalog.Seeders.Details;
 using CarDetailsCatalog.VisualComponents;
 
 namespace CarDetailsCatalog
 {
-    public partial class MainForm : Form // TODO: scroll form
+    public partial class MainForm : Form
     {
         private static MainForm _form;
 
@@ -21,11 +19,7 @@ namespace CarDetailsCatalog
             using (var context = new AppDbContext())
             {
                 context.Database.Initialize(false);
-                context.Database.Delete();
                 context.Database.CreateIfNotExists();
-                new CarSeeder(context).Seed();
-                new EngineSeeder(context).Seed();
-                new GearboxSeeder(context).Seed();
             }
 
             contentControl.Controls.Add(ContentController.GetInstance().GetBrandsView());

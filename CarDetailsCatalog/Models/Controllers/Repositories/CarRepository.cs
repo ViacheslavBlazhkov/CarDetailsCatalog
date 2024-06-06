@@ -7,12 +7,10 @@ namespace CarDetailsCatalog.Models.Controllers.Repositories
 {
     public class CarRepository
     {
-        private readonly DbContext _context;
         private readonly DbSet<Car> _dbSet;
 
         public CarRepository(DbContext context)
         {
-            _context = context;
             _dbSet = context.Set<Car>();
         }
 

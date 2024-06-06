@@ -32,52 +32,52 @@ namespace CarDetailsCatalog.Models.Abstracts
 
         public static string GetSuitableCarIdsStringByArray(int[] ids) => string.Join("|", ids);
 
-        public static Dictionary<string, Color>[] GetParamsWithColors(Dictionary<string, string> params1,
-            Dictionary<string, string> params2)
+        public static Dictionary<string, Color>[] GetParamsWithColors(Dictionary<string, string> firstDetailParams,
+            Dictionary<string, string> secondDetailParams)
         {
-            var result1 = new Dictionary<string, Color>();
-            var result2 = new Dictionary<string, Color>();
-            for (int i = 0; i < params1.Count; i++)
+            var firstDetailResult = new Dictionary<string, Color>();
+            var secondDetailResult = new Dictionary<string, Color>();
+            for (int i = 0; i < firstDetailParams.Count; i++)
             {
-                var key = params1.ElementAt(i).Key;
+                var key = firstDetailParams.ElementAt(i).Key;
                 if (GetBestForProperty(key) != null)
                 {
-                    var value1 = double.Parse(params1.ElementAt(i).Value);
-                    var value2 = double.Parse(params2.ElementAt(i).Value);
-                    if (value1 == value2)
+                    var firstDetailValue = double.Parse(firstDetailParams.ElementAt(i).Value);
+                    var secondDetailValue = double.Parse(secondDetailParams.ElementAt(i).Value);
+                    if (firstDetailValue == secondDetailValue)
                     {
-                        result1.Add(key, Color.Gray);
-                        result2.Add(key, Color.Gray);
+                        firstDetailResult.Add(key, Color.Gray);
+                        secondDetailResult.Add(key, Color.Gray);
                     }
                     else
                     {
-                        var value = GetBestBetween(key, value1, value2);
-                        if (value == value1)
+                        var bestValue = GetBestBetween(key, firstDetailValue, secondDetailValue);
+                        if (bestValue == secondDetailValue)
                         {
-                            result1.Add(key, Color.SeaGreen);
-                            result2.Add(key, Color.IndianRed);
+                            firstDetailResult.Add(key, Color.SeaGreen);
+                            secondDetailResult.Add(key, Color.IndianRed);
                         }
                         else
                         {
-                            result1.Add(key, Color.IndianRed);
-                            result2.Add(key, Color.SeaGreen);
+                            firstDetailResult.Add(key, Color.IndianRed);
+                            secondDetailResult.Add(key, Color.SeaGreen);
                         }
                     }
                 }
             }
 
-            Dictionary<string, Color>[] result = { result1, result2 };
+            Dictionary<string, Color>[] result = { firstDetailResult, secondDetailResult };
             return result;
         }
 
-        public static double GetBestBetween(string property, double value1, double value2)
+        public static double GetBestBetween(string property, double firstDetailValue, double secondDetailValue)
         {
             if (GetBestForProperty(property) == "Max")
             {
-                return value1 > value2 ? value1 : value2;
+                return firstDetailValue > secondDetailValue ? firstDetailValue : secondDetailValue;
             }
 
-            return value1 < value2 ? value1 : value2;
+            return firstDetailValue < secondDetailValue ? firstDetailValue : secondDetailValue;
         }
 
         public static string GetBestForProperty(string property)

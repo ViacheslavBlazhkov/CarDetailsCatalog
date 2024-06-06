@@ -1,47 +1,31 @@
 ﻿using CarDetailsCatalog.Constants;
 using CarDetailsCatalog.Models;
-using CarDetailsCatalog.Models.Abstracts;
 using CarDetailsCatalog.Models.Controllers;
-using CarDetailsCatalog.Models.Details;
+using CarDetailsCatalog.Models.Factories;
 
 namespace CarDetailsCatalog.Seeders.Details
 {
-    public class GearboxSeeder
+    public static class GearboxSeeder
     {
-        private readonly AppDbContext _context;
-
-        public GearboxSeeder(AppDbContext context)
-        {
-            _context = context;
-        }
-
-        public void Seed() // engines for Audi A4 1994
+        public static void Seed()
         {
             Car audiA41994 = CarController.Instance.FindByBrandAndModel(Brand.Audi, "A4");
-            var gearboxes = new[]
-            {
-                new Gearbox()
-                {
-                    Name = "ZF 5HP18",
-                    ProducerId = (int)Producer.ZfFriedrichshafenAg,
-                    SuitableCarIds = ADetail.GetSuitableCarIdsStringByArray(new[] { audiA41994.Id }),
-                    Price = 450,
-                    Gears = 5,
-                    Type = GearboxType.Automatic
-                },
-                new Gearbox()
-                {
-                    Name = "Getrag 01A",
-                    ProducerId = (int)Producer.Getrag,
-                    SuitableCarIds = ADetail.GetSuitableCarIdsStringByArray(new[] { audiA41994.Id }),
-                    Price = 350,
-                    Gears = 5,
-                    Type = GearboxType.Manual
-                },
-            };
-
-            _context.Gearboxes.AddRange(gearboxes);
-            _context.SaveChanges();
+            DetailFactory.CreateGearbox(
+                "ZF 5HP18",
+                Producer.ZfFriedrichshafenAg,
+                new[] { audiA41994.Id },
+                450,
+                GearboxType.Automatic,
+                5
+            );
+            DetailFactory.CreateGearbox(
+                "Getrag 01A",
+                Producer.Getrag,
+                new[] { audiA41994.Id },
+                350,
+                GearboxType.Automatic,
+                5
+            );
         }
     }
 }

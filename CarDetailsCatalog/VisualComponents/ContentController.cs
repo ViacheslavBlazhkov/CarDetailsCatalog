@@ -41,7 +41,7 @@ namespace CarDetailsCatalog.VisualComponents
 
         public Control GetModelsView()
         {
-            var models = CarController.Instance.GetModelsByBrandId((int)ChosenBrand);
+            var models = CarController.Instance.GetModelsByBrandId((int)ChosenBrand).Take(4);
             var titles = models.OrderBy(car => car.Model).Select(car => car.Model).ToArray();
             var control = GetControlWithButtons(titles, MainForm.GetForm().ChangeControlToDetailTypesView);
             return control;
@@ -68,16 +68,16 @@ namespace CarDetailsCatalog.VisualComponents
             switch (ChosenDetailType)
             {
                 case DetailType.Brakes:
-                    details = new List<ADetail>();
+                    details = BrakesController.Instance.GetAllByCarId(car.Id).ToList<ADetail>().GetRange(0, 4);
                     break;
                 case DetailType.Engine:
-                    details = EngineController.Instance.GetAllByCarId(car.Id).ToList<ADetail>();
+                    details = EngineController.Instance.GetAllByCarId(car.Id).ToList<ADetail>().GetRange(0, 4);
                     break;
                 case DetailType.Gearbox:
-                    details = GearboxController.Instance.GetAllByCarId(car.Id).ToList<ADetail>();
+                    details = GearboxController.Instance.GetAllByCarId(car.Id).ToList<ADetail>().GetRange(0, 4);
                     break;
                 case DetailType.Tires:
-                    details = new List<ADetail>();
+                    details = TireController.Instance.GetAllByCarId(car.Id).ToList<ADetail>().GetRange(0, 4);
                     break;
                 default:
                     details = new List<ADetail>();
@@ -110,8 +110,8 @@ namespace CarDetailsCatalog.VisualComponents
         {
             _detailsToCompare.Clear();
             List<ADetail> details = new List<ADetail>();
-            details.AddRange(EngineController.Instance.SearchByTitle(title).ToList<ADetail>());
-            details.AddRange(GearboxController.Instance.SearchByTitle(title).ToList<ADetail>());
+            details.AddRange(EngineController.Instance.SearchByTitle(title).ToList<ADetail>().Take(4));
+            details.AddRange(GearboxController.Instance.SearchByTitle(title).ToList<ADetail>().Take(4));
 
             var titles = details.Select(d => d.Name).ToArray();
             var control = GetControlWithButtons(titles, MainForm.GetForm().ChangeControlToDetailInfoView);
@@ -148,14 +148,14 @@ namespace CarDetailsCatalog.VisualComponents
                 AccessibleName = @"detailToCompare_0",
                 BackColor = Color.DarkSeaGreen,
                 Font = new Font("Serif", 12),
-                Location = new Point(10, 0),
+                Location = new Point(10, 3),
                 Size = new Size(120, 40),
             });
             var removeBtn1 = new Button
             {
                 BackColor = Color.DarkSeaGreen,
                 Font = new Font("Serif", 12),
-                Location = new Point(140, 0),
+                Location = new Point(140, 3),
                 Size = new Size(40, 40),
                 Text = @"X",
                 Tag = "detailToCompare_0"
@@ -166,14 +166,14 @@ namespace CarDetailsCatalog.VisualComponents
                 AccessibleName = @"detailToCompare_1",
                 BackColor = Color.DarkSeaGreen,
                 Font = new Font("Serif", 12),
-                Location = new Point(220, 0),
+                Location = new Point(220, 3),
                 Size = new Size(120, 40),
             });
             var removeBtn2 = new Button
             {
                 BackColor = Color.DarkSeaGreen,
                 Font = new Font("Serif", 12),
-                Location = new Point(350, 0),
+                Location = new Point(350, 3),
                 Size = new Size(40, 40),
                 Tag = "detailToCompare_1",
                 Text = @"X",

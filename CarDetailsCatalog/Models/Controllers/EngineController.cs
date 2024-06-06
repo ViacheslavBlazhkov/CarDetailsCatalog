@@ -9,7 +9,7 @@ namespace CarDetailsCatalog.Models.Controllers
         private static EngineController _instance;
         private readonly EngineRepository _repository;
 
-        public EngineController(EngineRepository repository)
+        private EngineController(EngineRepository repository)
         {
             _repository = repository;
         }

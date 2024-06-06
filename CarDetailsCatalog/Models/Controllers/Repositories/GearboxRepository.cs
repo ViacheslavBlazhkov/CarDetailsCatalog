@@ -7,12 +7,10 @@ namespace CarDetailsCatalog.Models.Controllers.Repositories
 {
     public class GearboxRepository
     {
-        private readonly DbContext _context;
         private readonly DbSet<Gearbox> _dbSet;
 
         public GearboxRepository(DbContext context)
         {
-            _context = context;
             _dbSet = context.Set<Gearbox>();
         }
 

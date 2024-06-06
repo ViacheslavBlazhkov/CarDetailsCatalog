@@ -11,6 +11,8 @@ namespace CarDetailsCatalog
         public DbSet<ADetail> Details { get; set; }
         public DbSet<Engine> Engines { get; set; }
         public DbSet<Gearbox> Gearboxes { get; set; }
+        public DbSet<Tire> Tires { get; set; }
+        public DbSet<Brakes> Brakes { get; set; }
 
         public AppDbContext()
         {
@@ -23,6 +25,8 @@ namespace CarDetailsCatalog
             modelBuilder.Entity<Car>().HasKey(c => c.Id);
             modelBuilder.Entity<Engine>().HasKey(d => d.Id);
             modelBuilder.Entity<Gearbox>().HasKey(d => d.Id);
+            modelBuilder.Entity<Brakes>().HasKey(d => d.Id);
+            modelBuilder.Entity<Tire>().HasKey(d => d.Id);
 
             base.OnModelCreating(modelBuilder);
         }
