@@ -68,16 +68,28 @@ namespace CarDetailsCatalog.VisualComponents
             switch (ChosenDetailType)
             {
                 case DetailType.Brakes:
-                    details = BrakesController.Instance.GetAllByCarId(car.Id).ToList<ADetail>().GetRange(0, 4);
+                    details = BrakesController.Instance.GetAllByCarId(car.Id)
+                        .Cast<ADetail>()
+                        .Take(4)
+                        .ToList();
                     break;
                 case DetailType.Engine:
-                    details = EngineController.Instance.GetAllByCarId(car.Id).ToList<ADetail>().GetRange(0, 4);
+                    details = EngineController.Instance.GetAllByCarId(car.Id)
+                        .Cast<ADetail>()
+                        .Take(4)
+                        .ToList();
                     break;
                 case DetailType.Gearbox:
-                    details = GearboxController.Instance.GetAllByCarId(car.Id).ToList<ADetail>().GetRange(0, 4);
+                    details = GearboxController.Instance.GetAllByCarId(car.Id)
+                        .Cast<ADetail>()
+                        .Take(4)
+                        .ToList();
                     break;
                 case DetailType.Tires:
-                    details = TireController.Instance.GetAllByCarId(car.Id).ToList<ADetail>().GetRange(0, 4);
+                    details = TireController.Instance.GetAllByCarId(car.Id)
+                        .Cast<ADetail>()
+                        .Take(4)
+                        .ToList();
                     break;
                 default:
                     details = new List<ADetail>();
